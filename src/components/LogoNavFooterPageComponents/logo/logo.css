@@ -1,0 +1,5 @@
+.logoName {
+    color: var(--color-primary-font);
+    font-size: clamp(1.5rem, 2.5vw, 5.75vw);
+    font-weight: 700;
+}

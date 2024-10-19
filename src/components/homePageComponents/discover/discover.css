@@ -1,0 +1,227 @@
+.discoverSection {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    background-image: radial-gradient(#2e2c7c68, #4a5ecb5f), url('../../../assets/sergio-alves-santos-PeDrafNlY2Y-unsplash.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+}
+
+.discoverContainer {
+    min-height: 100vh;
+    margin-bottom: 3rem;
+}
+
+
+.linktoRecipeThree {
+    color: white;
+    font-size: clamp(.75rem, 1.10vw, 5vw);
+    z-index: 1;
+}
+
+.discoverTitleContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    margin-bottom: 10rem;
+}
+
+
+.discoverTitleContainerH1 {
+    font-size: clamp(4rem, 11vw, 13vw);
+    margin-top: 4.5rem;
+}
+
+.discoverTitleContainerH1.hidden {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.discoverTitleContainerH1.show {
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-disc-title;
+}
+
+.discoverTitleContainerH2 {
+    font-size: clamp(1.5rem, 3vw, 6vw);
+    line-height: 0%;
+}
+
+.discoverTitleContainerH2.hidden {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+
+}
+
+
+.discoverTitleContainerH2.show {
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animate-disc-sub-text;
+}
+
+.discLinksToDrinkContainer {
+    display: grid;
+    justify-content: space-evenly;
+    gap: .25rem;
+    grid-template-columns: repeat(6, 15%);
+    margin-top: 3rem;
+    overflow-y: scroll;
+    padding-bottom: 4rem;
+    width: 100%;
+
+
+}
+
+.discAlcLinkContainer:hover {
+    z-index: 999;
+}
+
+
+
+.discAlcLinkContainer.hidden:nth-child(even) {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+.discAlcLinkContainer.hidden:nth-child(odd) {
+    opacity: 0;
+    filter: blur(15px);
+    transition: all 1s;
+}
+
+
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+7),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+8),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+9),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+10),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+11),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+12) {
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-disc-even;
+}
+
+
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+1),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+2),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+3),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+4),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+5),
+.discLinksToDrinkContainer>.discAlcLinkContainer.show:nth-child(12n+6) {
+    filter: blur(0);
+    opacity: 1;
+    animation-duration: 2s;
+    animation-name: animated-disc-odd;
+}
+
+
+
+
+
+@keyframes animated-disc-title {
+    0% {
+        transform: translateX(-200%)
+    }
+
+    100% {
+        transform: translateX(0%)
+    }
+
+
+}
+
+
+@keyframes animate-disc-sub-text {
+    0% {
+        transform: translateX(200%)
+    }
+
+    100% {
+        transform: translateX(0%)
+    }
+}
+
+@keyframes animated-disc-odd {
+    0% {
+        transform: translateX(-300%)
+    }
+
+    100% {
+        transform: translateX(0%)
+    }
+}
+
+@keyframes animated-disc-even {
+    0% {
+        transform: translateX(300%)
+    }
+
+    100% {
+        transform: translateX(0%)
+    }
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+    .discoverTitleContainer {
+        height: 8rem;
+    }
+
+    .discLinksToDrinkContainer {
+        grid-template-columns: repeat(4, 20%);
+        height: 22rem;
+        overflow-y: scroll;
+
+    }
+
+    .linktoRecipeThree {
+        margin: 0 0;
+        padding: 0 0;
+
+    }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+
+    .discoverContainer {
+        padding-top: 4rem;
+    }
+
+    .discLinksToDrinkContainer {
+        grid-template-columns: repeat(2, 40%);
+        gap: .25rem;
+        height: 24rem;
+        overflow-y: scroll;
+        margin-top: -5rem;
+    }
+
+}
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+
+    .discLinksToDrinkContainer {
+
+        margin-top: -7rem;
+    }
+
+}

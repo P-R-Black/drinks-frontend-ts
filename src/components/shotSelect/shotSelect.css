@@ -1,0 +1,223 @@
+.shotSelectBackground {
+    background-size: cover;
+
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+
+    height: 100vh;
+    width: 100%;
+    margin-top: -5rem;
+
+}
+
+.baseShotAlcoholContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 95vh;
+    width: 100%;
+}
+
+.baseShotAlcTitleContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+    width: 100%;
+
+}
+
+.baseShotAlcTitleContainer h1 {
+    font-size: clamp(3rem, 10vw, 14.5vw);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.baseShotAlcTitleContainer h2 {
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
+    line-height: 0%;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.shotListContainer {
+
+    max-width: var(--container-width-lg);
+}
+
+
+.shotListContainer[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+
+
+
+.shotListUl {
+
+    animation: shotScroll linear infinite;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding-block: 1rem;
+    width: max-content;
+}
+
+
+
+.shotListUl:hover {
+    animation-play-state: paused;
+}
+
+
+.shotListLi {
+    color: var(--color-primary-font);
+    font-size: clamp(1.25rem, 2rem, 5vw);
+    font-weight: 500;
+    text-align: center;
+    min-width: clamp(13rem, 24rem, 25vw);
+    text-shadow: var(--small-letter-shadow);
+
+
+    /* stock ticker vid */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    /* min-width: 24rem; */
+
+
+}
+
+.nameShotButtonContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.moreShotLinkContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.ShotlinktoRecipe {
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.25rem, 4vw);
+    font-weight: 700;
+    margin-top: 2rem;
+    outline: none;
+    text-align: center;
+    padding: .25rem;
+    width: clamp(5rem, 6rem, 15vw);
+
+}
+
+.linktoRecipeLarge {
+    background-color: transparent;
+    border: 3px solid white;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.25rem, 3vw);
+    font-weight: 700;
+    margin-top: .75rem;
+    outline: none;
+    text-align: center;
+    text-transform: capitalize;
+    padding: .75rem 1.25rem .75rem 1.25rem;
+    width: auto;
+
+}
+
+
+@keyframes shotScroll {
+    to {
+        /* transform: translate(calc(-70% - 1rem)); */
+        transform: translate(-100%);
+    }
+
+}
+
+
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .baseShotAlcTitleContainer {
+        margin-top: 0rem;
+    }
+
+    .shotListLi {
+        width: auto;
+    }
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .shotSelectBackground {
+        margin-top: -7rem;
+    }
+
+    .baseShotAlcTitleContainer {
+        margin-top: 3rem;
+    }
+
+    .baseShotAlcTitleContainer h2 {
+        margin-top: 1rem;
+
+    }
+
+    .shotListLi {
+        font-weight: 400;
+        width: auto;
+    }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (orientation: landscape) {
+    .shotSelectBackground {
+        padding-bottom: 6rem;
+
+    }
+
+    .shotListContainer {
+        margin-bottom: -5rem;
+
+    }
+
+    .moreShotLinkContainer {
+        margin-bottom: 2rem;
+    }
+
+
+    .baseShotAlcTitleContainer {
+        margin-top: 6rem;
+    }
+
+    .baseShotAlcTitleContainer h2 {
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+}

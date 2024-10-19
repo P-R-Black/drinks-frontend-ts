@@ -1,0 +1,106 @@
+.midSection {
+    font-size: 4rem;
+    filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1);
+    min-height: 30vh;
+    width: 100%;
+}
+
+.midSection H1 {
+    color: var(--color-primary-font);
+    font-size: clamp(2rem, 5vw, 10rem);
+    font-weight: 900;
+    margin-top: 4.5rem;
+    text-align: center
+}
+
+.midSectionTwo H3 {
+    color: var(--color-primary-font);
+    font-size: clamp(1.25rem, 3.5vw, 7rem);
+    font-weight: 600;
+    line-height: 1;
+    margin: 2rem;
+    text-align: center;
+}
+
+
+.midSectionTwo {
+    font-size: 4rem;
+    filter: sepia(100%) saturate(300%) brightness(95%) hue-rotate(185deg) contrast(.50) opacity(1);
+    min-height: 30vh;
+    width: 100%;
+}
+
+.midSectionTwo H1 {
+    color: var(--color-primary-font);
+    font-size: clamp(2rem, 5vw, 10rem);
+    font-weight: 900;
+    margin-top: 4.5rem;
+    text-align: center
+}
+
+.midSectionTwo H3 {
+    color: var(--color-primary-font);
+    font-size: clamp(1.25rem, 3.5vw, 7rem);
+    font-weight: 600;
+    line-height: 1;
+    margin: 2rem;
+    text-align: center;
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media (max-width: 1024px) {
+    #midSection {
+        font-size: 2rem;
+        height: 26vh;
+
+    }
+
+    #midSectionTwo {
+        height: 26vh;
+        margin-bottom: -2rem;
+    }
+
+}
+
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media (max-width: 600px) {
+    #midSection {
+        font-size: 2rem;
+        height: 20vh;
+    }
+
+    .midSection H1 {
+        margin-top: 2rem;
+        text-align: center
+    }
+
+    #midSectionTwo {
+        height: 25vh;
+        /* margin-bottom: 2rem; */
+    }
+
+    .midSectionTwo H3 {
+        margin: 1rem;
+    }
+
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+
+    .midSection H1 {
+        margin-top: 2rem;
+    }
+
+
+    #midSectionTwo {
+        min-height: 35vh;
+    }
+
+    .midSectionTwo H3 {
+        margin-top: 1rem;
+    }
+
+}

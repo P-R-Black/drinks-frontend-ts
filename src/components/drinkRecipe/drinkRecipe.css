@@ -1,0 +1,255 @@
+.recipeBackground {
+    background-color: rgb(0, 0, 0, .50);
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    margin-top: -5rem;
+    overflow-x: hidden;
+    width: 100;
+
+    padding-bottom: 2rem;
+}
+
+.recipeContainer {
+    align-items: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: auto;
+    margin-top: 5em;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.recipeTitle {
+    color: var(--color-primary-font);
+    font-size: clamp(.9rem, 8rem, 10vw);
+    font-weight: 900;
+    margin-top: 3rem;
+    text-align: center;
+
+}
+
+.likesAndShare {
+    align-items: center;
+    display: flex;
+    gap: clamp(3rem, 11vw, 10rem);
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+
+.ingredientInstructionContainer {
+    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(3, 29%);
+    justify-content: center;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.ingredientInstructionContainer h3 {
+    color: var(--color-primary-font);
+    font-size: 1.5rem;
+    text-decoration: underline;
+    margin-bottom: .5rem;
+
+}
+
+.ingredientInstructionContainer h4,
+.ingredientInstructionContainer ul li {
+    color: var(--color-primary-font);
+    font-size: 1.15rem;
+    font-weight: 300;
+
+}
+
+.garnishAndGlassContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+
+.glass {
+    text-transform: capitalize;
+
+}
+
+
+.instructions {
+    color: var(--color-primary-font);
+    font-size: 1.15rem;
+    line-height: 1.50;
+    text-transform: capitalize;
+    width: 100%;
+    white-space: pre-wrap;
+}
+
+
+.incrementUnit {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+    margin-top: .25rem;
+    width: 7rem;
+}
+
+.unitMeasure {
+    margin-top: 2rem;
+}
+
+.servings {
+    width: .5rem;
+}
+
+
+
+.buttonContainer {
+    border: 3px solid var(--color-primary-font);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 1.75rem;
+    margin-top: .15rem;
+    width: 4rem;
+
+}
+
+.plusButton,
+.minusButton {
+    background-color: transparent;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    font-size: 1.2rem;
+    outline: none;
+}
+
+.plusButton:active,
+.minusButton:active {
+    transform: translateY(2px);
+}
+
+.plusButton {
+    padding-top: .25rem;
+}
+
+.minusButton {
+    padding-top: .25rem;
+
+}
+
+
+.measureButtonContainer {
+    border: 3px solid var(--color-primary-font);
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 2.5rem;
+    margin-top: .15rem;
+    width: 6rem;
+}
+
+.measureButtonContainer.oz {
+    background: linear-gradient(to right, #968686aa 50%, transparent 50%);
+
+}
+
+.measureButtonContainer.ml {
+    background: linear-gradient(to right, transparent 50%, #968686aa 50%);
+
+}
+
+.ozButton,
+.mlButton {
+    background-color: transparent;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    font-size: 1rem;
+    outline: none;
+
+}
+
+.ozButton.selected {
+    font-weight: 800;
+}
+
+.ozButton:focus,
+.mlButton:focus,
+.plusButton:focus,
+.minusButton:focus {
+    outline-offset: 2px;
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .recipeBackground {
+        margin-top: -10rem;
+    }
+
+    .recipeContainer {
+        margin-top: 8rem;
+    }
+
+
+
+    .ingredientInstructionContainer {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-left: .5rem;
+        margin-top: 5rem;
+    }
+
+
+    .ingredientTitle,
+    .garnishTitle,
+    .glassTitle,
+    .servingSize,
+    .instructionTitle {
+        margin-bottom: .75rem;
+        text-align: center;
+    }
+
+    .ingredients,
+    .garnish,
+    .glass {
+        text-align: center;
+    }
+
+
+    .servingAmountContainer,
+    .measureContainer {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: .25rem;
+    }
+
+}
+
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .ingredientInstructionContainer {
+        display: grid;
+        gap: 10%;
+        grid-template-columns: 45% 45%;
+    }
+
+    .instructionContainer {
+        min-width: 85vw;
+    }
+}

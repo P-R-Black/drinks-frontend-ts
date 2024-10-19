@@ -1,0 +1,147 @@
+.searchInputDiv {
+    align-items: center;
+    border: 2px solid var(--color-primary-font);
+    border-radius: 10px;
+    display: flex;
+    height: 2rem;
+    justify-content: space-between;
+    overflow: hidden;
+    width: 28rem;
+}
+
+input.searchBar {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    border-radius: 10px;
+    margin-left: .5rem;
+
+}
+
+.searchBar::placeholder {
+    color: var(--color-primary-font);
+    font-size: clamp(.40rem, .90rem, 3vw);
+    font-style: italic;
+    font-weight: 400;
+}
+
+.searchBar {
+    border-radius: 10px;
+    color: var(--color-primary-font);
+    cursor: auto;
+    font-size: 1rem;
+    font-weight: 600;
+    height: 1.75rem;
+    width: 26rem;
+}
+
+
+
+
+button.searchIcons {
+    align-items: center;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.75rem;
+    height: 1.75rem;
+    width: 3.5rem;
+
+}
+
+.results_list {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 8px #ddd;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    margin-top: .5rem;
+    top: 70px;
+    max-height: 300px;
+    overflow-y: scroll;
+    width: 32%;
+}
+
+
+.searchResultList {
+    align-items: center;
+    background-color: rgba(0, 0, 0, .9);
+    border: 2px solid rgb(0, 0, 0);
+    color: var(--color-primary-font);
+    cursor: pointer;
+    display: flex;
+    font-weight: 700;
+    font-size: 1.35rem;
+    justify-content: space-between;
+    padding: .25rem;
+
+}
+
+.searchResultList:hover {
+    background-color: #968686aa;
+}
+
+.searchResultList.active {
+    background-color: #968686aa;
+    overflow-y: scroll;
+}
+
+.searchResultList.hidden {
+    display: none;
+}
+
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+    .searchInputDiv {
+        width: 45vw;
+    }
+
+    .searchBar::placeholder {
+        font-size: .75rem;
+    }
+
+    .searchIcons {
+        font-size: 1.5rem;
+    }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .searchSection {
+
+        padding-top: 1rem;
+
+    }
+
+    .searchInputDiv {
+        width: 90vw;
+    }
+
+    .searchBar::placeholder {
+        font-size: .75rem;
+    }
+
+    .searchIcons {
+        font-size: 1.25rem;
+    }
+
+    .searchBar::placeholder {
+        font-size: .65rem;
+    }
+
+    .results_list {
+        width: 85%
+    }
+
+
+
+}

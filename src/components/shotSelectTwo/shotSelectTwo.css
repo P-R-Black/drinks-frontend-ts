@@ -1,0 +1,99 @@
+.allShotsBackground {
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+
+
+    height: 100vh;
+    margin-top: -5rem;
+    width: 100%;
+
+}
+
+.allShotsContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 90vh;
+    width: 100%;
+
+}
+
+.baseShotTitleContainerTwo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+
+.baseShotTitleContainerTwo h1 {
+    font-size: clamp(3rem, 10vw, 14.5vw);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.baseShotTitleContainerTwo h2 {
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
+    font-weight: 600;
+    line-height: 0%;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+.linktoShotRecipeTwo {
+    color: var(--color-primary-font);
+}
+
+.linksToShotContainer {
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: repeat(6, 15%);
+    margin-top: 3rem;
+    overflow-y: scroll;
+    padding-bottom: 4rem;
+    width: 95%;
+
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+
+    .linksToShotContainer {
+        grid-template-columns: repeat(3, 26%);
+
+    }
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .allShotsBackground {
+        margin-top: -7rem;
+    }
+
+    .allShotsContainer {
+        margin-top: 10rem;
+        margin-bottom: 1rem;
+    }
+
+    .baseShotTitleContainerTwo {
+        margin-top: 1rem;
+    }
+
+    .linksToShotContainer {
+        grid-template-columns: repeat(2, 41%);
+        gap: .5rem;
+
+    }
+
+
+
+}

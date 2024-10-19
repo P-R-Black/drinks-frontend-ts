@@ -1,0 +1,86 @@
+.shareIcon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.shareIconShareText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.iconHeart {
+    font-size: clamp(1rem, 7vw, 1.5rem);
+    margin-right: .5rem;
+}
+
+.shareIcon span {
+    font-size: 1.2rem;
+}
+
+.shareDropDown {
+    backdrop-filter: blur(2rem);
+    -webkit-backdrop-filter: blur(2rem);
+    background: hsl(0, 0%, 90%);
+    -webkit-background: hsl(0, 0%, 90%);
+    border: 2px solid var(--color-primary-font);
+    border-radius: 15px;
+    box-shadow: 10px 11px 2px 5px rgba(0, 0, 0, 1);
+    display: none;
+    margin-top: 1rem;
+    padding: min(1vh, 2rem) 1rem;
+    position: relative;
+    transition: var(--transition);
+    width: 15rem;
+}
+
+.shareDropDown.show {
+    align-items: center;
+    animation: fadeIn 1s;
+    display: flex;
+    height: 2.5rem;
+    justify-content: space-around;
+    pointer-events: auto;
+    -webkit-animation: fadeIn 1s;
+}
+
+.shareIcons {
+    cursor: pointer;
+    font-size: 1.5rem;
+}
+
+#facebookShare {
+    color: #4267B2;
+}
+
+#xShare {
+    color: #000000;
+
+}
+
+#emailShare {
+    color: #000000;
+
+}
+
+#messengerShare {
+    color: #4267B2;
+}
+
+#whatsAppShare {
+    color: #25D366;
+
+}
+
+
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .shareDropDown {}
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {}

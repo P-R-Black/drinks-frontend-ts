@@ -1,0 +1,251 @@
+.footerSection {
+    background-color: #1B0000;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.footerContainer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerLogoSocials {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 15rem;
+    justify-content: center;
+
+}
+
+.footerSocials {
+    align-items: center;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    display: flex;
+    font-size: clamp(1.5rem, 2vw, 5vw);
+    height: 2rem;
+    justify-content: space-between;
+    margin-top: 1rem;
+    width: clamp(9rem, 14rem, 17vw)
+}
+
+.footerSiteSections {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-around;
+
+    font-size: clamp(.9rem, 1.15rem, 2vw);
+    font-weight: 500;
+    gap: 1rem;
+
+    width: 50%;
+}
+
+.footerSiteSectionsLeft,
+.footerSiteSectionsRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 1rem;
+
+}
+
+
+
+.footerSiteSections a {
+    color: var(--color-primary-font);
+    cursor: pointer;
+    width: auto;
+}
+
+.footerSiteSections a:hover {
+    color: #ef4c3a;
+}
+
+.footerSiteInfo a {
+    color: #989797;
+    cursor: pointer;
+}
+
+.footerSiteInfo a:hover {
+    color: var(--color-primary-font);
+}
+
+
+.footerSiteInfo {
+    color: var(--color-primary-grey);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(.9rem, 1.15rem, 2vw);
+    font-weight: 500;
+    gap: .75rem;
+    justify-content: space-evenly;
+    width: 10rem;
+}
+
+
+.postFooter {
+    background-color: #000000;
+    min-height: 3rem;
+}
+
+.postFooterContainer {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    min-height: 3rem;
+}
+
+.createBySection {
+    cursor: pointer;
+}
+
+.createBySection,
+.copyrightYear,
+.rightsReserved,
+.apiBy {
+    color: var(--color-primary-font);
+    font-size: .75rem;
+    font-weight: 400;
+
+}
+
+.createdBy {
+    color: var(--color-primary-font);
+    font-size: .75rem;
+    font-weight: 700;
+}
+
+.createdBy:hover,
+.apiBy:hover {
+    color: #ef4c3a;
+}
+
+.skip-to-content {
+    font-family: 'lobster';
+    position: absolute;
+    top: -50px;
+    /* Hide off-screen */
+    left: 1;
+    background: red;
+    color: #fff;
+    z-index: 100;
+    text-decoration: none;
+    transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+    top: 0;
+    /* Bring it into view when focused */
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .footerContainer {
+        flex-direction: column;
+        height: auto;
+        margin-bottom: 1rem;
+
+    }
+
+    .footerLogoSocials {
+        height: auto;
+        margin-top: 2rem;
+        width: auto;
+
+    }
+
+    .mobileDivisionContainer {
+        display: grid;
+        grid-template-columns: repeat(2, 45%);
+        justify-content: space-between;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        width: 100%;
+
+    }
+
+    .mobileDivisionContainer a {
+        text-align: center;
+        width: auto;
+    }
+
+    .footerSiteSections {
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+
+    .postFooterContainer {
+        gap: 1.2rem;
+
+    }
+
+    .createBySection,
+    .copyrightYear,
+    .rightsReserved,
+    .apiBy {
+        font-size: .55rem;
+        font-weight: 300;
+        text-align: center;
+    }
+
+    .createdBy {
+        font-size: .65rem;
+        font-weight: 500;
+    }
+
+}
+
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+
+    .footerSiteSections {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        gap: .01rem;
+        height: 85%;
+
+    }
+
+    .footerSiteSections ul.footerSiteSectionsLeft {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footerSiteSections ul.footerSiteSectionsRight {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .footerSiteInfo {
+        width: 20%;
+
+    }
+
+    .footerSiteInfo a {
+
+        text-align: center;
+    }
+
+}

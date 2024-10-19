@@ -1,0 +1,276 @@
+.ginBackground {
+    background-size: cover;
+
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+
+    height: 100vh;
+    width: 100%;
+    margin-top: -5rem;
+}
+
+.baseAlcoholContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 95vh;
+    width: 100%;
+}
+
+.baseAlcTitleContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+    width: 100%;
+
+}
+
+.baseAlcTitleContainer h1 {
+    font-size: clamp(3rem, 10vw, 14.5vw);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.baseAlcTitleContainer h2 {
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
+    line-height: 0%;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.drinkListContainer {
+    max-width: var(--container-width-lg);
+    margin-bottom: -2rem;
+}
+
+
+.drinkListContainer[data-animated="true"] {
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+
+
+.drinkListUl {
+    animation: scroll linear infinite;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 2rem;
+    padding-block: 1rem;
+    width: max-content;
+}
+
+
+
+.drinkListUl:hover {
+    animation-play-state: paused;
+}
+
+
+.drinkListLi {
+    color: var(--color-primary-font);
+    font-size: clamp(1.25rem, 2rem, 5vw);
+    font-weight: 500;
+    text-align: center;
+    min-width: clamp(13rem, 24rem, 25vw);
+    text-shadow: var(--small-letter-shadow);
+
+
+    /* stock ticker vid */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    /* min-width: 24rem; */
+
+
+}
+
+.nameButtonContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.moreDrinkLinkContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+
+.linktoRecipe {
+    background-color: transparent;
+    border: 3px solid var(--color-primary-font);
+    border-radius: 10px;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    font-size: clamp(1rem, 1.25rem, 4vw);
+    font-weight: 700;
+    margin-top: 2rem;
+    outline: none;
+    text-align: center;
+    padding: .25rem;
+    width: clamp(5rem, 6rem, 15vw);
+
+}
+
+.linktoRecipeLarge {
+    background-color: transparent;
+    border: 3px solid var(--color-primary-font);
+    border-radius: 10px;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    font-size: clamp(1rem, 1.25rem, 3vw);
+    font-weight: 700;
+    margin-top: .75rem;
+    outline: none;
+    text-align: center;
+    text-transform: capitalize;
+    padding: .75rem 1.25rem .75rem 1.25rem;
+    width: auto;
+
+}
+
+
+@keyframes scroll {
+    to {
+        /* transform: translate(calc(-70% - 1rem));   translate(-100%);*/
+        transform: translate(-50%)
+    }
+
+}
+
+
+.scrollerTempBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tag_list {
+    margin: 0;
+    padding-inline: 0;
+    list-style: none;
+}
+
+.tag_list li {
+    padding: 1rem;
+    background: rgb(35, 35, 35);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5 1rem -0.25rem var(--small-letter-shadow);
+    color: white;
+}
+
+.scroller {
+    max-width: 600px;
+    /* outline: 3px solid lime; */
+    /* overflow: hidden */
+}
+
+
+.scroller__inner {
+    padding-block: 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.scroller[data-animated="true"] {
+    border: 5px solid lime;
+    overflow: hidden;
+    -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+    mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+
+}
+
+.scroller[data-animated="true"] .scroller__inner {
+    width: max-content;
+    flex-wrap: nowrap;
+    animation: scrollTwo 20s linear infinite
+}
+
+
+@keyframes scrollTwo {
+    to {
+        transform: translate(calc(-50% - 0.5rem));
+    }
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .baseAlcTitleContainer {
+        margin-top: 0rem;
+    }
+
+    .drinkListLi {
+        width: auto;
+    }
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .ginBackground {
+        margin-top: -10rem;
+    }
+
+    .baseAlcTitleContainer {
+        margin-top: 3rem;
+    }
+
+    .baseAlcTitleContainer h2 {
+        margin-top: 1rem;
+
+    }
+
+    .drinkListLi {
+        font-weight: 400;
+        width: auto;
+    }
+
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (max-width: 670px) and (orientation: landscape) {
+    .ginBackground {
+        padding-bottom: 6rem;
+
+    }
+
+    .drinkListContainer {
+        margin-bottom: -5rem;
+
+    }
+
+    .moreDrinkLinkContainer {
+        margin-bottom: 2rem;
+    }
+
+    a.linktoRecipeLarge {
+        margin: 0 0;
+    }
+
+    .baseAlcTitleContainer {
+        margin-top: 6rem;
+    }
+
+    .baseAlcTitleContainer h2 {
+        line-height: 0%;
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+    }
+}

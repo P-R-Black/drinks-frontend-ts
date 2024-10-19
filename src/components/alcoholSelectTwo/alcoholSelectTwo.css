@@ -1,0 +1,116 @@
+.allDrinksBackground {
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow-x: hidden;
+
+
+    height: 100vh;
+    margin-top: -5rem;
+    width: 100%;
+
+}
+
+.allDrinksContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+
+}
+
+.baseAlcTitleContainerTwo {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+
+.baseAlcTitleContainerTwo h1 {
+    font-size: clamp(3rem, 10vw, 14.5vw);
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.baseAlcTitleContainerTwo h2 {
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
+    font-weight: 600;
+    line-height: 0%;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+
+.linktoRecipeTwo {
+    color: var(--color-primary-font);
+
+}
+
+.linksToDrinksContainer {
+    /* align-items: center; */
+    display: grid;
+    justify-content: space-between;
+    /* gap: .25rem; */
+    grid-template-columns: repeat(6, 15%);
+
+    margin-top: 3rem;
+    overflow-y: scroll;
+    padding-bottom: 4rem;
+    width: 95%;
+
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+
+    .linksToDrinksContainer {
+        grid-template-columns: repeat(3, 26%);
+
+    }
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .allDrinksBackground {
+        margin-top: -10rem;
+    }
+
+    .allDrinksContainer {
+        margin-top: 10rem;
+    }
+
+    .baseAlcTitleContainerTwo {
+        margin-top: 1rem;
+    }
+
+    .linksToDrinksContainer {
+        grid-template-columns: repeat(2, 41%);
+        gap: .5rem;
+
+    }
+
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL HORIZONTAL DEVICES) =============== */
+@media (orientation: landscape) {
+    .linksToDrinksContainer {
+
+        margin-top: -.45rem;
+    }
+
+    .baseAlcTitleContainerTwo h2 {
+        margin-bottom: .5rem;
+        margin-top: .75rem;
+    }
+
+}
