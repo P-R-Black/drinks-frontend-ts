@@ -1,19 +1,16 @@
-import { useParams } from 'react-router-dom';
 
-import { ShotSelect } from '../../components/shotSelect/ShotSelect';
+import { ContactUs } from '../../components/contactUs/ContactUs'
 import { CoockieBar } from '../../components/CookiesComponents/cookies/CookieBar';
-
 import { useCookies } from '../../providers/CookiesProvider';
 
 
-export const ShotSelectPages = () => {
-    const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
-    let { alcohol } = useParams()
+export const ContactUsPage = () => {
+    const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
     return (
         <>
-            <ShotSelect alcohol={alcohol} />
+            <ContactUs />
             <CoockieBar
                 showCookieBanner={showCookieBanner}
                 cookiesConsent={cookiesConsent}

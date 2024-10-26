@@ -21,6 +21,7 @@ declare global {
 const GA_UA_ID = process.env.REACT_APP_GOOGLE_UA_ID; // OUR_TRACKING_ID
 const GA_ANALYTICS = process.env.REACT_APP_GOOGLE_MEASUREMENT_ID;
 
+
 export const CookiesProvider: React.FC<CookiesProviderProps> = ({ children }) => {
 
     const [cookiesConsent, setCookiesConsent] = useState(() => {
@@ -29,71 +30,72 @@ export const CookiesProvider: React.FC<CookiesProviderProps> = ({ children }) =>
     })
 
     const [showCookieBanner, setShowCookieBanner] = useState(true)
-
-    let googleAnalyticsScript: null;
+    const [googleAnalyticsScriptLoaded, setGoogleAnalyticsScriptLoaded] = useState(false);
 
     const loadGoogleAnalytics = () => {
+        if (googleAnalyticsScriptLoaded) return;
 
         const script = document.createElement('script');
         script.async = true;
         script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_UA_ID}`;
 
+        script.onload = () => {
+            setGoogleAnalyticsScriptLoaded(true);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function () {
+                window.dataLayer.push(arguments);
+            };
+
+            window.gtag('js', new Date());
+            window.gtag('config', GA_ANALYTICS, {
+                cookie_flags: 'SameSite=None;Secure',
+                page_path: window.location.pathname,
+            });
+        };
+
         document.head.appendChild(script);
-        console.log('window', window)
-        let dataLayer = window.dataLayer || [];
-
-        function gtag(_p0: string, p0: string, _p1: { cookie_flags: string; }, p1: Date) {
-            dataLayer.push(arguments)
-        }
-
-        // gtag(_p0: string, p0: string, _p1: { cookie_flags: string;}, p1: Date): void
-        // gtag("js", new Date());
-        window.gtag("js", "config", `${GA_ANALYTICS}`, {
-            cookie_flags: 'SameSite=None;Secure',
-            // page_path: window.location.pathme
-
-        });
     };
 
 
+
     const removeGoogleAnalytics = () => {
-        if (googleAnalyticsScript) {
-            document.head.removeChild(googleAnalyticsScript);
-            googleAnalyticsScript = null;
+        const script = document.querySelector(`script[src*="${GA_UA_ID}"]`);
+        if (script) {
+            document.head.removeChild(script);
             if (window.dataLayer) {
                 window.dataLayer = [];
             }
         }
-    }
+        setGoogleAnalyticsScriptLoaded(false);
+    };
 
     const acceptCookies = () => {
         Cookies.set("cookiesConsent", "true", {
             sameSite: 'None',
             secure: true
-        })
+        });
         setCookiesConsent(true);
         setShowCookieBanner(false);
-        loadGoogleAnalytics()
+        loadGoogleAnalytics();
 
         if (GA_UA_ID) {
             ReactGA.initialize(GA_UA_ID);
             ReactGA.send({
                 hitType: "pageview",
                 page: window.location.pathname,
-
             });
         } else {
             console.warn('Google Analytics UA ID is not defined.');
         }
-
-    }
+    };
 
     const declineCookies = () => {
         Cookies.remove("cookiesConsent");
         setCookiesConsent(false);
-        setShowCookieBanner(false)
-        removeGoogleAnalytics()
-    }
+        setShowCookieBanner(false);
+        removeGoogleAnalytics();
+    };
+
     return (
         <CookiesContext.Provider value={{ cookiesConsent, showCookieBanner, acceptCookies, declineCookies }}>
             {children}

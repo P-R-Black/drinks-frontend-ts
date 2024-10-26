@@ -1,8 +1,7 @@
-import React from 'react'
 import { useParams } from 'react-router-dom';
 
 import { DrinkRecipe } from '../../components/drinkRecipe/DrinkRecipe';
-// import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
+import { CoockieBar } from '../../components/CookiesComponents/cookies/CookieBar';
 import { useCookies } from '../../providers/CookiesProvider';
 
 
@@ -16,18 +15,13 @@ export const DrinkRecipePage = () => {
 
     return (
         <>
-
-            <DrinkRecipe
-                drinkName={drinkName}
-                alcohol={alcohol}
-
+            <DrinkRecipe drinkName={drinkName} alcohol={alcohol} />
+            <CoockieBar
+                showCookieBanner={showCookieBanner}
+                cookiesConsent={cookiesConsent}
+                acceptCookies={acceptCookies}
+                declineCookies={declineCookies}
             />
-            {/* <CoockieBar
-        showCookieBanner={showCookieBanner}
-        cookiesConsent={cookiesConsent}
-        acceptCookies={acceptCookies}
-        declineCookies={declineCookies}
-      /> */}
         </>
     )
 }

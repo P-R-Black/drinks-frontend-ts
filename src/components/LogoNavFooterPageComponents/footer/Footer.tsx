@@ -8,7 +8,7 @@ import { FaSquareInstagram } from "react-icons/fa6";
 import { FaTiktok } from "react-icons/fa";
 import { HashLink } from 'react-router-hash-link'
 import { NavLink, Link } from 'react-router-dom';
-// import { PrivacyChoice } from '../../user_privacy/PrivacyChoice';
+import { PrivacyChoice } from '../../privacyPolicy/PrivacyChoice';
 
 export const Footer = () => {
     const [buttonPopUp, setButtonPopUp] = useState(false);
@@ -71,7 +71,7 @@ export const Footer = () => {
                                 <NavLink to="/about-us">{"About Us"}</NavLink>
                                 <NavLink to="/contact-us">{"Contact"}</NavLink>
                                 <NavLink onClick={() => setButtonPopUp(true)} to="/privacy-policy">{"Privacy Choices"}</NavLink>
-                                {/* <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice> */}
+                                <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp} children={undefined}></PrivacyChoice>
                                 <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
                                 <NavLink to="/terms-and-conditions">{"Terms Of Service"}</NavLink>
                             </ul>
@@ -95,7 +95,7 @@ export const Footer = () => {
                                 <NavLink to="/about-us">{"About Us"}</NavLink>
                                 <NavLink to="/contact-us">{"Contact"}</NavLink>
                                 <NavLink onClick={() => setButtonPopUp(true)} to="/privacy-policy">{"Privacy Choices"}</NavLink>
-                                {/* <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp}></PrivacyChoice> */}
+                                <PrivacyChoice trigger={buttonPopUp} setTrigger={setButtonPopUp} children={undefined}></PrivacyChoice>
                                 <NavLink to="/privacy-policy">{"Privacy Policy"}</NavLink>
                                 <NavLink to="/terms-and-conditions">{"Terms Of Service"}</NavLink>
                             </ul>

@@ -5,6 +5,8 @@ import { Parallax } from 'react-parallax';
 import { ToolTip } from '../../tooltip/ToolTip';
 import slugify from 'react-slugify';
 import { ShotsAlcoholType } from '../../../api/DrinksAPI';
+import { ErrorPage } from '../../errorPageComponents/errorPage/ErrorPage';
+import { LoadingPage } from '../../loadingComponents/LoadingPage';
 
 
 
@@ -51,11 +53,11 @@ export const DiscoverShots = () => {
     }, [shotBase]); // Empty dependency array to run only once on mount'
 
     if (shotBaseIsLoading) {
-        return (<div>Loading...</div>);
+        return (<LoadingPage />);
     }
 
     if (shotBaseIsError) {
-        return (<div>Error: {shotBaseError.message}</div>);
+        return (<ErrorPage />);
     }
 
 

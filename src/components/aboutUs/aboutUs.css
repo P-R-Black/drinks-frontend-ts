@@ -1,0 +1,85 @@
+.aboutSection {
+    align-items: center;
+    background-color: black;
+    display: flex;
+    min-height: 100vh;
+    justify-content: center;
+    margin-top: -5rem;
+    width: 100%;
+}
+
+
+.aboutContainer,
+.aboutContainerTwo {
+    color: var(--color-primary-font);
+    min-height: 100vh;
+}
+
+.aboutContainerTwo {
+    margin-bottom: 5rem;
+    margin-top: 3rem;
+}
+
+.aboutTitleContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: auto;
+
+}
+
+.aboutTitleContainer h1 {
+    font-size: clamp(4rem, 11vw, 13vw);
+    margin-top: 4.5rem;
+
+}
+
+.aboutTitleContainer h2 {
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
+    line-height: 0%;
+
+}
+
+.aboutParagraphContainer {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.aboutParagraphContainer p {
+    font-size: clamp(1rem, 1.25vw, 3vw);
+    text-align: justify;
+    width: 80%;
+}
+
+
+
+.aboutDataContainer {
+    margin-top: 4rem;
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .aboutSection {
+        margin-top: -9rem;
+    }
+
+
+    .aboutTitleContainer {
+        margin-top: 4.5rem;
+
+    }
+
+
+
+}

@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&family=Oleo+Script+Swash+Caps:wght@400;700&display=swap');
 
 * {
+  background-color: "#000000";
   margin: 0;
   padding: 0;
   border: 0;
@@ -66,59 +67,6 @@ h1 {
 
 h2 {
   font-weight: 600;
-}
-
-
-
-
-.loadErrorSection {
-  background-color: black;
-  color: var(--color-primary-font);
-  height: 100vh;
-}
-
-.loadErrorContainer {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-  justify-content: center;
-}
-
-.loadErrorTitleContainer {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-
-
-}
-
-.loadErrorTitleContainer h1 {
-  color: #407fd7;
-  font-family: 'lobster';
-  font-size: clamp(5rem, 18vw, 20.5vw);
-  text-shadow: 5px 3px 3px rgba(156, 156, 156, 0.624);
-  ;
-}
-
-.loadErrorTitleContainer h2 {
-  color: rgba(255, 0, 0, 0.451);
-  font-size: clamp(3rem, 4.5vw, 6.5vw);
-  margin-top: 1rem;
-  text-shadow: 1px 1px 1px rgb(255, 255, 255);
-}
-
-.loadErrorTitleContainer h3 {
-  font-size: clamp(1.5rem, 3vw, 6vw);
-  font-weight: 300;
-  margin-top: 1rem;
-
-}
-
-.loadErrorTitleContainer h3.minorh3 {
-  color: rgba(255, 0, 0, 0.451);
-  font-size: clamp(.9rem, 1.5vw, 4vw);
-  text-shadow: .5px .5px .75px rgb(255, 255, 255);
-
 }
 
 

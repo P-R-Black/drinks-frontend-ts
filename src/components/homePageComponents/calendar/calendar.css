@@ -1,0 +1,169 @@
+#calendarPrevious,
+#calendarNext {
+    font-size: 2rem;
+    color: white;
+
+}
+
+.calendarWeekdays {
+    color: white;
+}
+
+.containerCalendar {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 10px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    color: white;
+    width: 400px;
+    height: 350px;
+
+}
+
+.containerCalendar header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 25px 5px;
+}
+
+
+header .calendarNavigation {
+    display: flex;
+}
+
+header .calendarNavigation span {
+    color: white;
+    height: 38px;
+    width: 38px;
+    margin: 0 1px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 38px;
+    border-radius: 50%;
+    user-select: none;
+    font-size: 1.9rem;
+}
+
+.calendarNavigation span:last-child {
+    margin-right: -10px;
+}
+
+header .calendarNavigation span:hover {
+    background: #f2f2f2;
+}
+
+header .calendarCurrentDate {
+    font-weight: 500;
+    font-size: clamp(1.5rem, 2.25vw, 3rem);
+}
+
+.calendarBody {
+    padding: 25px;
+}
+
+.calendarBody ul {
+    list-style: none;
+    flex-wrap: wrap;
+    display: flex;
+    text-align: center;
+}
+
+.calendarBody .calendar-dates {
+    margin-bottom: 20px;
+}
+
+.calendarBody li {
+    width: calc(100% / 7);
+    font-size: 1.10rem;
+    color: #ffffff;
+
+
+}
+
+.calendarBody li.has-drink {
+    border: 2px solid yellow;
+    border-radius: 10%;
+    color: yellow;
+}
+
+.calendarBody .calendarWeekdays li {
+    cursor: default;
+    font-weight: 500;
+}
+
+.calendarBody .calendarDates li {
+    margin-top: 1rem;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+
+.calendarWeekdays li.inactive {
+    color: #aaa;
+}
+
+.calendarDates li.active {
+    color: #fff;
+}
+
+
+.calendarDates li:not(.active):hover::before {
+    background: #e4e1e1;
+}
+
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+    .containerCalendar {
+        width: 350px;
+        height: auto
+    }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+
+    .containerCalendar header {
+        padding: 10px 20px 0px;
+    }
+
+
+    .containerCalendar {
+        border: 2px solid white;
+        height: auto;
+        margin-top: -1rem;
+        padding-bottom: 1rem;
+        ;
+        width: 350px;
+    }
+
+
+    .calendarBody li {
+        font-size: 1rem;
+        margin-top: 1rem;
+        width: calc(100% / 7);
+    }
+
+    .calendarBody .calendarWeekdays li {
+        cursor: default;
+        font-weight: 500;
+    }
+
+    .calendarBody .calendarDates li {
+        margin-top: .25rem;
+        font-size: 1rem;
+    }
+
+
+    .calendarBody {
+        padding: 0px;
+    }
+
+
+}

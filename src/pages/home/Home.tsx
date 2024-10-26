@@ -1,33 +1,58 @@
 import React, { useState, useEffect, useCallback, useContext } from 'react'
 
 import { Hero } from '../../components/homePageComponents/hero/Hero';
-// import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
-// import { MustKnows } from '../../components/homePageComponents/must_knows/MustKnows';
+import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
+
 import { MidSection } from '../../components/midsection/MidSection';
 import { MidSectionTwo } from '../../components/midsection/MidSection';
 import { Discover } from '../../components/homePageComponents/discover/Discover';
 import { DiscoverShots } from '../../components/homePageComponents/discoverShots/DiscoverShots';
-// import { Mocktails } from '../../components/homePageComponents/mocktails/Mocktails';
-// import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-// import { useOutletContext } from 'react-router-dom';
-// import { useCookies } from '../../providers/cookiesProvider/CookiesProvider';
+import { Mocktails } from '../../components/homePageComponents/mocktails/Mocktails';
+import { MustKnows } from '../../components/homePageComponents/mustKnows/MustKnows';
+import { CoockieBar } from '../../components/CookiesComponents/cookies/CookieBar';
+import { useCookies } from '../../providers/CookiesProvider';
+import { GetBackendApi, GetTodaysDrinkOfTheDay } from '../../api/GetSetDodApi';
+import { AllDrinksApi } from '../../api/DrinksAPI';
+import { LoadingPage } from '../../components/loadingComponents/LoadingPage';
+import { ErrorPage } from '../../components/errorPageComponents/errorPage/ErrorPage';
+
+
+
+interface Drink {
+  id: number;
+  drink_name: string;
+  slug: string;
+  base_alcohol: string[];
+  drink_type: string;
+  garnish: string[];
+  ingredients: string[];
+  serving_glass: string;
+  mixing_direction: string;
+  profile: string;
+  must_know_drink: boolean;
+
+}
+
+interface Event {
+  theDate: string;
+  name: string;
+}
 
 
 
 export const Home = () => {
 
-  // const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner, } = useCookies();
+  const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner, } = useCookies();
 
-  //   const { drinks } = useOutletContext()
-  //   const { lastDrinkOfTheDay } = useOutletContext()
-  //   const { drinkOfTheDay } = useOutletContext()
-  //   const { cocktails } = useOutletContext()
-  //   const { allShots } = useOutletContext()
-  //   const { mustKnows } = useOutletContext()
+  const { data: backendApiData, isLoading: backendApiDataIsLoading, isError: backendApiDataIsError, error: backendApiDataError } = GetBackendApi();
+  const { data: drinkOfTheDayData, isLoading: drinkOfTheDayDataIsLoading, isError: drinkOfTheDayDataIsError, error: drinkOfTheDayDataError } = GetTodaysDrinkOfTheDay();
+  const { data: AllDrinksApiData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError, error: AllDrinksApiError } = AllDrinksApi();
 
 
-  // const { data: backendApi } = useOutletContext()
-  // const { data: currDrinkOfTheDay } = useOutletContext()
+  // console.log('backendApiData', backendApiData)
+  // console.log('drinkOfTheDayData', drinkOfTheDayData)
+  // console.log('AllDrinksApiData', AllDrinksApiData)
+
 
   var date = new Date()
   var year = date.getFullYear();
@@ -37,117 +62,145 @@ export const Home = () => {
   var mm = String(month + 1).padStart(2, '0'); //January is 0!
 
   const [pastDrinksOfTheDay, setPastDrinksOfTheDay] = useState([])
-  const [todaysDrinkOfTheDay, seTodaysDrinkOfTheDay] = useState([])
-  const [currentDrink, setCurrentDrink] = useState([])
-  const [dateLookup, setDateLookup] = useState()
-  const [drinkLookup, setDrinkLookup] = useState()
+  const [todaysDrinkOfTheDay, seTTodaysDrinkOfTheDay] = useState([])
+  const [currentDrink, setCurrentDrink] = useState<Drink[]>([])
+  const [drinks, setDrinks] = useState<Drink[]>([])
+  const [dateLookup, setDateLookup] = useState<string | undefined>(undefined);
+  const [drinkLookup, setDrinkLookup] = useState<string | undefined>(undefined)
 
-  const calendarYear = year
-  const calendarMonth = month
+  const [drinkOfTheDay, setDrinkOfTheDay] = useState([])
+
 
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "Novenber", "December"
   ];
 
+  const updateDrinks = () => {
+    if (AllDrinksApiData) {
+      const assignDrinks = AllDrinksApiData.drinks
+      setDrinks(assignDrinks)
+    }
+
+  }
+
+  useEffect(() => {
+
+    updateDrinks()
+  })
+
 
   // gets the drink of the day info file in server directory:
-  //   const getFullDrinkInfo = useCallback(async (theLastDod) => {
-  //     let ldod = await drinks?.filter((drink) => drink.drink_name === theLastDod)
-  //     setCurrentDrink([ldod])
-  //   }, [drinks]);
+  const getFullDrinkInfo = useCallback((theLastDod: string) => {
+    // console.log('getFullDrinkInfo Called', theLastDod)
+    let ldod = drinks.filter((drink: { drink_name: string; }) => drink.drink_name === theLastDod)
+    setCurrentDrink(prev => { return ldod })
+  }, [drinks]);
 
 
 
+  useEffect(() => {
+    // gets today's Dod
+    const fetchLastRecord = async () => {
+      if (drinkOfTheDayData) {
+        try {
+          seTTodaysDrinkOfTheDay(drinkOfTheDayData['name'])
+          if (drinks.length > 0) {
+            getFullDrinkInfo(drinkOfTheDayData['name'])
+          }
 
-  //   useEffect(() => {
-  //     // returns past drinks of the day and their date
-  //     const fetchData = async () => {
-  //       try {
-  //         setPastDrinksOfTheDay(drinkOfTheDay)
-  //       } catch (error) {
-  //         console.error(error.message)
+        } catch (error: any) {
+          console.error(error.message)
+        }
+      }
+    }
 
-  //       }
-  //     }
+    if (backendApiData) {
+      setDrinkOfTheDay(backendApiData)
+    }
+    // returns past drinks of the day and their date
+    const fetchData = async () => {
+      try {
+        setPastDrinksOfTheDay(drinkOfTheDay)
+      } catch (error) {
+        console.error(backendApiDataError?.message)
 
-  //     // gets today's Dod
-  //     const fetchLastRecord = async () => {
-  //       try {
-  //         seTodaysDrinkOfTheDay(lastDrinkOfTheDay['name'])
-  //         getFullDrinkInfo(lastDrinkOfTheDay['name'])
-  //       } catch (error) {
-  //         console.error(error.message)
-  //       }
-  //     }
-
-  //     fetchData()
-  //     fetchLastRecord()
-
-  //   }, [drinks, drinkOfTheDay, getFullDrinkInfo]);
-  //   // currentDrink,
-
-
-  //   const eventMap = {};
-  //   if (pastDrinksOfTheDay) {
-  //     pastDrinksOfTheDay?.forEach(event => {
-  //       const date = event.theDate.split('T')[0];
-  //       eventMap[date] = event.name;
-  //     });
-  //   }
-
-  //   const handleDateClick = async (date) => {
-  //     const event = await eventMap[String(date)];
-  //     if (event) {
-  //       setDrinkLookup(event)
-  //       getFullDrinkInfo(event)
-  //     }
-  //   };
+      }
+    }
 
 
 
-  //   const calDate = document.querySelectorAll('.calDate')
-  //   calDate.forEach((cd) => {
-  //     cd.addEventListener('click', async () => {
+    fetchData()
+    fetchLastRecord()
+  }, [drinks, drinkOfTheDay, backendApiData, backendApiDataError?.message, drinkOfTheDayData, getFullDrinkInfo]);
 
-  //       let getClassNames = cd.getAttribute('class')
-  //       let clickedDay = cd.innerHTML
-  //       let clickedYear = calendarYear
-  //       let clickedMonth;
+  if (AllDrinksApiIsLoading) {
+    return (<LoadingPage />);
+  }
 
-  //       if (getClassNames.includes('lastMonthDays')) {
-  //         clickedMonth = calendarMonth
-  //       } else if (getClassNames.includes('nextMonthDays')) {
-  //         clickedMonth = calendarMonth + 2
-  //       } else {
-  //         clickedMonth = calendarMonth + 1
-  //       }
+  if (AllDrinksApiIsError) {
+    return (<ErrorPage />);
+  }
+
+  if (drinkOfTheDayDataIsLoading) {
+    return (<LoadingPage />);
+  }
+
+  if (drinkOfTheDayDataIsError) {
+    return (<ErrorPage />);
+  }
+
+  if (backendApiDataIsLoading) {
+    return (<LoadingPage />);
+  }
+
+  if (backendApiDataIsError) {
+    return (<ErrorPage />);
+  }
 
 
-  //       if (String(clickedMonth).length < 2) {
-  //         clickedMonth = "0" + String(clickedMonth)
-  //       }
 
-  //       // let clickedOnDate = `${calendarYear}-${clickedMonth}-${cd.innerHTML.length === 1 ? '0' + cd.innerHTML : cd.innerHTML}`
-  //       let monthInText = months[Number(clickedMonth - 1)]
+  const eventMap: { [key: string]: string | undefined } = {};
+  if (pastDrinksOfTheDay) {
+    pastDrinksOfTheDay.forEach((event: Event) => {
+      const date = event.theDate.split('T')[0];
+      eventMap[date] = event.name;
+    });
+  }
 
-  //       // handleDateClick(clickedOnDate)
-  //       let changedDate = `${monthInText} ${clickedDay}, ${clickedYear}`
-  //       setDateLookup(changedDate)
 
-  //     })
+  const handleDateClick = (date: any) => {
+    let formattedDate = formatDates(date)
+    const event: string | undefined = eventMap[String(date)];
+    if (event) {
+      setDateLookup(formattedDate)
+      setDrinkLookup(event)
+      getFullDrinkInfo(event)
+    }
+  };
 
-  //   })
+  const formatDates = (date: string) => {
+    let formatDatesMonth: string = date.split('-')[1]; // Extracts month part (e.g., "10" for October)
+    let formatDatesDay: string = date.split('-')[2]; // Extracts day part (e.g., "24")
+    let formatDatesYear: string = date.split('-')[0]; // Extracts year part (e.g., "2024")
+
+
+    const digitToMonth: { [key: string]: string } = {
+      "01": "January", "02": "February", "03": "March", "04": "April", "05": "May", "06": "June",
+      "07": "July", "08": "August", "09": "September", "10": "October", "11": "November", "12": "December"
+    }
+
+    const monthName = digitToMonth[formatDatesMonth]
+    let changedDate = `${monthName} ${formatDatesDay}, ${formatDatesYear}`
+    return changedDate;
+
+  }
 
 
   return (
     <>
       <Hero />
       <MidSection />
-      <Discover />
-      <MidSectionTwo />
-      <DiscoverShots />
-      {/*
       <DailyDrink
         date={date}
         year={year}
@@ -161,22 +214,17 @@ export const Home = () => {
         handleDateClick={handleDateClick}
         pastDrinksOfTheDay={pastDrinksOfTheDay}
       />
-      
-     
-      <Mocktails
-        cocktails={cocktails}
-      />
-      <MustKnows mustKnows={mustKnows} />
+      <MidSectionTwo />
+      <Discover />
+      <DiscoverShots />
+      <Mocktails />
+      <MustKnows />
       <CoockieBar
         showCookieBanner={showCookieBanner}
         cookiesConsent={cookiesConsent}
         acceptCookies={acceptCookies}
         declineCookies={declineCookies}
-      /> */}
+      />
     </>
   )
-}
-
-
-
-
+};

@@ -8,7 +8,9 @@ import './drinkRecipe.css'
 
 import imgRecipeBG from '../../assets/pexels-kelly.jpg';
 import slugify from 'react-slugify';
-import { CocktailAlcoholType, CocktailsByBaseDrinkApi, ShotsByBaseDrinkApi } from '../../api/DrinksAPI';
+import { CocktailsByBaseDrinkApi, ShotsByBaseDrinkApi } from '../../api/DrinksAPI';
+import { LoadingPage } from '../loadingComponents/LoadingPage'
+import { ErrorPage } from '../errorPageComponents/errorPage/ErrorPage'
 
 
 interface DrinkRecipeProp {
@@ -133,6 +135,21 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
         return newText
     }
 
+    if (isLoading) {
+        return (<LoadingPage />);
+    }
+
+    if (isError) {
+        return (<ErrorPage />);
+    }
+
+    if (shotsByBaseIsLoading) {
+        return (<LoadingPage />);
+    }
+
+    if (shotsByBaseIsError) {
+        return (<ErrorPage />);
+    }
 
     return (
         <section className="recipeBackground" style={{ backgroundImage: picChoice }}>

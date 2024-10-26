@@ -8,16 +8,15 @@ import { DrinkRecipePage } from '../pages/drinkRecipePages/DrinkRecipePage';
 import { ShotSelectPages } from '../pages/shotSelectPages/ShotSelectPages';
 import { ShotSelectPagesTwo } from '../pages/shotSelectPagesTwo/ShotSelectPagesTwo';
 
+import { AboutUsPage } from '../pages/aboutUsPages/AbooutUsPage';
+import { ContactUsPage } from '../pages/contactUsPages/ContactUsPage';
+import { TermsConditionsPage } from '../pages/termsConditionsPages/TermsConditionsPage';
+import { PrivacyPolicyPage } from '../pages/privacyPolicyPages/PrivacyPolicyPage';
+import { ErrorPagePage } from '../pages/errorPagePages/ErrorPagePage';
+
 // import { BuildDrinkPage } from '../pages/buildDrinkPage/BuildDrinkPage';
-// import { AboutUs } from '../pages/about/About';
-// import { Contact } from '../pages/contact/Contact';
-// import { Terms } from '../pages/terms/Terms';
-// import { Privacy } from '../pages/privacy/Privacy';
-// import { PageNotFound } from '../pages/notFound/NotFound';
 // import { SuperUserPage } from '../pages/superUserPage/SuperUserPage';
 // import { DashboardPage } from '../pages/dashboardPage/DashboardPage';
-
-
 
 export const router = createBrowserRouter([
 
@@ -32,11 +31,11 @@ export const router = createBrowserRouter([
             { path: "/:alcohol/all_shots", element: <ShotSelectPagesTwo /> },
             { path: "/:alcohol/:drinkName", element: <DrinkRecipePage /> },
             // { path: "/build-drink", element: <BuildDrinkPage /> },
-            // { path: "/about-us", element: <AboutUs /> },
-            // { path: "/contact-us", element: <Contact /> },
-            // { path: "/terms-and-conditions", element: <Terms /> },
-            // { path: "/privacy-policy", element: <Privacy /> },
-            // { path: "*", element: <PageNotFound /> },
+            { path: "/about-us", element: <AboutUsPage /> },
+            { path: "/contact-us", element: <ContactUsPage /> },
+            { path: "/terms-and-conditions", element: <TermsConditionsPage /> },
+            { path: "/privacy-policy", element: <PrivacyPolicyPage /> },
+            { path: "*", element: <ErrorPagePage /> },
 
             // { path: "/keep-user-admin", element: <SuperUserPage /> },
             // { path: "/dashboard", element: <DashboardPage /> },

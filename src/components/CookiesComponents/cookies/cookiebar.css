@@ -1,0 +1,84 @@
+.cookieBarSection {
+    background-color: var(--color-primary-dark);
+
+    border: 2px solid rgb(0, 0, 0);
+    position: fixed;
+    z-index: 999;
+    bottom: 5%;
+
+}
+
+.cookieBarContainer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+}
+
+.cookieBarContainerTextBox {
+    width: 70%;
+}
+
+.cookieBarContainer p {
+    /* color: rgba(0, 0, 0, 0.841); */
+    color: var(--color-primary-font);
+    font-size: .90rem;
+    text-align: justify;
+}
+
+.cookieBarContainerButtonBox {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+.cookieBarContainerButtonBox button {
+
+    background-color: rgba(20, 20, 141, 0.845);
+    border-radius: 7px;
+    color: var(--color-primary-font);
+    cursor: pointer;
+    padding: .5rem 1rem;
+}
+
+.cookieBarContainerButtonBox button:active {
+    transform: translateY(2px);
+}
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {
+
+    .cookieBarContainer {
+        flex-direction: column;
+    }
+
+
+    .cookieBarSection {
+        position: fixed;
+        bottom: 20%;
+    }
+
+
+}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+
+    .cookieBarContainer {
+        flex-direction: column;
+    }
+
+    .cookieBarContainerTextBox {
+        margin-bottom: 1rem;
+        width: 90%;
+    }
+
+    .cookieBarContainer p {
+        font-size: .75rem;
+    }
+
+    .cookieBarContainerButtonBox button {
+        font-size: .75rem;
+    }
+
+}

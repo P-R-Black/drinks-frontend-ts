@@ -1,0 +1,31 @@
+.section404 {
+    min-height: 100vh;
+    margin-top: -5rem;
+    width: auto;
+    overflow: hidden;
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.container404 {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    min-height: 90vh;
+    justify-content: center;
+}
+
+.container404 h1 {
+    color: aliceblue;
+    font-size: clamp(8rem, 20vw, 22.5vw);
+    margin-bottom: -3rem;
+}
+
+
+.container404 h2 {
+    color: aliceblue;
+    font-size: clamp(1.5rem, 3.5vw, 6.5vw);
+}

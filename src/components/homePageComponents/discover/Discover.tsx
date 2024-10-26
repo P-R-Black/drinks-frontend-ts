@@ -5,6 +5,8 @@ import { Parallax } from 'react-parallax';
 import { ToolTip } from '../../tooltip/ToolTip';
 import slugify from 'react-slugify';
 import { CocktailAlcoholType } from '../../../api/DrinksAPI';
+import { ErrorPage } from '../../errorPageComponents/errorPage/ErrorPage';
+import { LoadingPage } from '../../loadingComponents/LoadingPage';
 
 export const Discover = () => {
 
@@ -16,13 +18,26 @@ export const Discover = () => {
 
 
     useEffect(() => {
-        const observer = new IntersectionObserver((entries) => {
-            const entry = entries[0]
-            setDiscElementVisible(entry.isIntersecting)
+        const currentRef = discoverRef.current; // Store the ref value when the effect runs
 
-        })
-        observer.observe(discoverRef.current)
-    })
+        if (currentRef) {
+            const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
+                const entry = entries[0];
+                setDiscElementVisible(entry.isIntersecting);
+            });
+
+            // Observe the element
+            observer.observe(currentRef);
+
+            // Clean up observer on component unmount
+            return () => {
+                if (currentRef) {
+                    observer.unobserve(currentRef); // Use the stored ref value for cleanup
+                }
+            };
+        }
+    });
+
 
     useEffect(() => {
         const allAlcohol = async () => {
@@ -37,11 +52,11 @@ export const Discover = () => {
     }, [cocktailBase]); // Empty dependency array to run only once on mount'
 
     if (isLoading) {
-        return (<div>Loading...</div>);
+        return (<LoadingPage />);
     }
 
     if (isError) {
-        return (<div>Error: {error.message}</div>);
+        return (<ErrorPage />);
     }
 
 

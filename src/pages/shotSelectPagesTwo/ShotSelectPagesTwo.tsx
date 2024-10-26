@@ -1,11 +1,8 @@
-import React, { useState, useEffect, useCallback } from 'react'
 import { useParams } from 'react-router-dom';
 
 import { ShotsSelectTwo } from '../../components/shotSelectTwo/ShotSelectTwo';
-// import { CoockieBar } from '../../components/CookieComponents/cookies/CoockieBar';
-import slugify from 'react-slugify';
+import { CoockieBar } from '../../components/CookiesComponents/cookies/CookieBar';
 import { useCookies } from '../../providers/CookiesProvider';
-
 
 
 export const ShotSelectPagesTwo = () => {
@@ -16,17 +13,13 @@ export const ShotSelectPagesTwo = () => {
 
     return (
         <>
-
-            <ShotsSelectTwo
-                alcohol={alcohol}
-
+            <ShotsSelectTwo alcohol={alcohol} />
+            <CoockieBar
+                showCookieBanner={showCookieBanner}
+                cookiesConsent={cookiesConsent}
+                acceptCookies={acceptCookies}
+                declineCookies={declineCookies}
             />
-            {/* <CoockieBar
-        showCookieBanner={showCookieBanner}
-        cookiesConsent={cookiesConsent}
-        acceptCookies={acceptCookies}
-        declineCookies={declineCookies}
-      /> */}
         </>
     )
 }

@@ -1,25 +1,20 @@
-import { useParams } from 'react-router-dom';
 
-import { AlcoholSelectTwo } from '../../components/alcoholSelectTwo/alcoholSelectTwo';
-import { useCookies } from '../../providers/CookiesProvider';
+import { TermsConditions } from '../../components/terms_conditions/TermsConditions';
 import { CoockieBar } from '../../components/CookiesComponents/cookies/CookieBar';
+import { useCookies } from '../../providers/CookiesProvider';
 
-export const AlcoholSelectPageTwo = () => {
-
+export const TermsConditionsPage = () => {
     const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
-
-    let { alcohol } = useParams<string>()
-
-
     return (
         <>
-            <AlcoholSelectTwo alcohol={alcohol} />
+            <TermsConditions />
             <CoockieBar
                 showCookieBanner={showCookieBanner}
                 cookiesConsent={cookiesConsent}
                 acceptCookies={acceptCookies}
                 declineCookies={declineCookies}
             />
+
         </>
     )
 }

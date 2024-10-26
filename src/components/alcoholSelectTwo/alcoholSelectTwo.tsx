@@ -6,6 +6,8 @@ import { ToolTip } from '../tooltip/ToolTip';
 import './alcoholSelectTwo.css';
 import { BackgroundPics } from '../../BackgroundPics';
 import { CocktailAlcoholType, CocktailsByBaseDrinkApi } from '../../api/DrinksAPI';
+import { ErrorPage } from '../errorPageComponents/errorPage/ErrorPage';
+import { LoadingPage } from '../loadingComponents/LoadingPage';
 
 interface AlcoholSelectProps {
     alcohol: string | undefined;
@@ -57,19 +59,19 @@ export const AlcoholSelectTwo: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
     })
 
     if (isLoading) {
-        return (<div>Loading...</div>);
+        return (<LoadingPage />);
     }
 
     if (isError) {
-        return (<div>Error: {error.message}</div>);
+        return (<ErrorPage />);
     }
 
     if (cocktailBaseLoading) {
-        return (<div>Loading...</div>);
+        return (<LoadingPage />);
     }
 
     if (cocktailBaseIsError) {
-        return (<div>Error: {cocktailBaseError.message}</div>);
+        return (<ErrorPage />);
     }
 
 

@@ -45,10 +45,20 @@ const AxiosFetch = async (endpoint: string) => {
     return response.data;
 };
 
-export const CocktailAlcoholType = () => {
+export const AllAlcoholType = () => {
     return useQuery({
         queryKey: ['alcoholTypes'], // Unique query key
-        queryFn: async () => AxiosFetch('alcohol-types'),
+        queryFn: async () => AxiosFetch('all-alcohol-types'),
+        // queryFn: AxiosFetch('alcohol-types'), // Function to fetch the data
+        staleTime: 60000, // Cache data for 1 minute (optional, can adjust)
+        // cacheTime: 5 * 60 * 1000, // Keep the cache for 5 minutes (optional)
+    });
+}
+
+export const CocktailAlcoholType = () => {
+    return useQuery({
+        queryKey: ['cocktailAlcoholTypes'], // Unique query key
+        queryFn: async () => AxiosFetch('cocktail-alcohol-types'),
         // queryFn: AxiosFetch('alcohol-types'), // Function to fetch the data
         staleTime: 60000, // Cache data for 1 minute (optional, can adjust)
         // cacheTime: 5 * 60 * 1000, // Keep the cache for 5 minutes (optional)
@@ -81,6 +91,29 @@ export const ShotsByBaseDrinkApi = (shotBase: string) => {
     return useQuery({
         queryKey: ['shotsByBase', shotBase], // Unique query key
         queryFn: async () => AxiosFetch('shot/' + shotBase),
+        refetchOnWindowFocus: true, // Automatically refetch when window is focused
+        refetchOnMount: true, // Automatically refetch when component remounts
+        // staleTime: 60000, // Cache data for 1 minute (optional, can adjust)
+        // cacheTime: 5 * 60 * 1000, // Keep the cache for 5 minutes (optional)
+    });
+}
+
+
+export const MustKnowDrinkApi = () => {
+    return useQuery({
+        queryKey: ['mustKnows'], // Unique query key
+        queryFn: async () => AxiosFetch('must-knows'),
+        refetchOnWindowFocus: true, // Automatically refetch when window is focused
+        refetchOnMount: true, // Automatically refetch when component remounts
+        // staleTime: 60000, // Cache data for 1 minute (optional, can adjust)
+        // cacheTime: 5 * 60 * 1000, // Keep the cache for 5 minutes (optional)
+    });
+}
+
+export const AllDrinksApi = () => {
+    return useQuery({
+        queryKey: ['allDrinks'], // Unique query key
+        queryFn: async () => AxiosFetch('drinks'),
         refetchOnWindowFocus: true, // Automatically refetch when window is focused
         refetchOnMount: true, // Automatically refetch when component remounts
         // staleTime: 60000, // Cache data for 1 minute (optional, can adjust)
