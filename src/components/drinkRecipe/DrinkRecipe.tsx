@@ -42,8 +42,8 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
     let [unitMeasure, setUnitMeasure] = useState("oz")
 
 
-    const { data: cocktailsByBase, isLoading, isError, error } = CocktailsByBaseDrinkApi(String(alcohol) || "");
-    const { data: shotsByBase, isLoading: shotsByBaseIsLoading, isError: shotsByBaseIsError, error: shotsByBaseError } = ShotsByBaseDrinkApi(String(alcohol) || "");
+    const { data: cocktailsByBase, isLoading, isError } = CocktailsByBaseDrinkApi(String(alcohol) || "");
+    const { data: shotsByBase, isLoading: shotsByBaseIsLoading, isError: shotsByBaseIsError } = ShotsByBaseDrinkApi(String(alcohol) || "");
 
 
 

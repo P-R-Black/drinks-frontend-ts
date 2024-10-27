@@ -16,7 +16,7 @@ export const DiscoverShots = () => {
     const [discElementVisible, setDiscElementVisible] = useState<boolean>(false);
     const [shotByBase, setShotByBase] = useState([]);
 
-    const { data: shotBase, isLoading: shotBaseIsLoading, isError: shotBaseIsError, error: shotBaseError } = ShotsAlcoholType();
+    const { data: shotBase, isLoading: shotBaseIsLoading, isError: shotBaseIsError } = ShotsAlcoholType();
 
     useEffect(() => {
         const currentRef = discoverShotRef.current; // Store the ref value when the effect runs

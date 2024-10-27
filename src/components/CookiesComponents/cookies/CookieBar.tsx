@@ -14,7 +14,7 @@ interface CookiesProps {
 
 
 export const CoockieBar: React.FC<CookiesProps> = () => {
-    const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner } = useCookies();
+    const { acceptCookies, declineCookies, showCookieBanner } = useCookies();
 
     return (
         <>

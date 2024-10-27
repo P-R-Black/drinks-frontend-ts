@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+
 import slugify from 'react-slugify';
 import './navigation.css'
 

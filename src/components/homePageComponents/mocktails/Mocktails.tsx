@@ -36,7 +36,7 @@ export const Mocktails = () => {
     const [mocktails, setMocktails] = useState<Drink[]>([]);
 
 
-    const { data: cocktailsByBase, isLoading, isError, error } = CocktailsByBaseDrinkApi(String("non-alcoholic") || "");
+    const { data: cocktailsByBase, isLoading, isError } = CocktailsByBaseDrinkApi(String("non-alcoholic") || "");
 
 
     const filterCocktailsByBase = async () => {

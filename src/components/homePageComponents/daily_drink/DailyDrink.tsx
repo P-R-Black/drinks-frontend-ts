@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Calendar } from '../calendar/Calendar'
 import './dailyDrink.css'
 
@@ -7,7 +7,6 @@ import slugify from 'react-slugify'
 
 import { Parallax } from 'react-parallax';
 import dodImage from '../../../assets/pexels-ron-lach.jpg'
-import debounce from 'lodash.debounce';
 
 
 
@@ -48,7 +47,7 @@ export const DailyDrink: React.FC<DailyDrinkProps> = (
     const [dodElementVisible, setDodElementVisible] = useState<boolean>(false);
     let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
 
-    const debouncedHandleDateClick = useCallback(debounce(handleDateClick, 200), [handleDateClick]);
+    // const debouncedHandleDateClick = useCallback(debounce(handleDateClick, 200), [handleDateClick]);
 
     useEffect(() => {
         const currentRef = titleRefTwo.current; // Store the ref value when the effect runs

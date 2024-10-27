@@ -26,7 +26,7 @@ interface Drink {
 export const MustKnows = () => {
     const [mustKnows, setMustKnows] = useState<Drink[]>([])
 
-    const { data: mustKnowCocktails, isLoading, isError, error } = MustKnowDrinkApi();
+    const { data: mustKnowCocktails, isLoading, isError } = MustKnowDrinkApi();
 
     const filterCocktailsByBase = async () => {
         if (mustKnowCocktails) {

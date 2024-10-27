@@ -34,9 +34,9 @@ export const AlcoholSelectTwo: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
     const [displayName, setDisplayName] = useState<string>("")
 
 
-    const { data: cocktailsByBase, isLoading, isError, error } = CocktailsByBaseDrinkApi(String(alcohol) || "");
+    const { data: cocktailsByBase, isLoading, isError } = CocktailsByBaseDrinkApi(String(alcohol) || "");
 
-    const { data: cocktailBase, isLoading: cocktailBaseLoading, isError: cocktailBaseIsError, error: cocktailBaseError } = CocktailAlcoholType();
+    const { data: cocktailBase, isLoading: cocktailBaseLoading, isError: cocktailBaseIsError } = CocktailAlcoholType();
 
 
     const filterCocktailsByBase = async () => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useContext } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 import { Hero } from '../../components/homePageComponents/hero/Hero';
 import { DailyDrink } from '../../components/homePageComponents/daily_drink/DailyDrink';
@@ -45,13 +45,9 @@ export const Home = () => {
   const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner, } = useCookies();
 
   const { data: backendApiData, isLoading: backendApiDataIsLoading, isError: backendApiDataIsError, error: backendApiDataError } = GetBackendApi();
-  const { data: drinkOfTheDayData, isLoading: drinkOfTheDayDataIsLoading, isError: drinkOfTheDayDataIsError, error: drinkOfTheDayDataError } = GetTodaysDrinkOfTheDay();
-  const { data: AllDrinksApiData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError, error: AllDrinksApiError } = AllDrinksApi();
+  const { data: drinkOfTheDayData, isLoading: drinkOfTheDayDataIsLoading, isError: drinkOfTheDayDataIsError } = GetTodaysDrinkOfTheDay();
+  const { data: AllDrinksApiData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = AllDrinksApi();
 
-
-  // console.log('backendApiData', backendApiData)
-  // console.log('drinkOfTheDayData', drinkOfTheDayData)
-  // console.log('AllDrinksApiData', AllDrinksApiData)
 
 
   var date = new Date()
@@ -66,7 +62,7 @@ export const Home = () => {
   const [currentDrink, setCurrentDrink] = useState<Drink[]>([])
   const [drinks, setDrinks] = useState<Drink[]>([])
   const [dateLookup, setDateLookup] = useState<string | undefined>(undefined);
-  const [drinkLookup, setDrinkLookup] = useState<string | undefined>(undefined)
+  // const [drinkLookup, setDrinkLookup] = useState<string | undefined>(undefined)
 
   const [drinkOfTheDay, setDrinkOfTheDay] = useState([])
 
@@ -92,7 +88,6 @@ export const Home = () => {
 
   // gets the drink of the day info file in server directory:
   const getFullDrinkInfo = useCallback((theLastDod: string) => {
-    // console.log('getFullDrinkInfo Called', theLastDod)
     let ldod = drinks.filter((drink: { drink_name: string; }) => drink.drink_name === theLastDod)
     setCurrentDrink(prev => { return ldod })
   }, [drinks]);
@@ -174,7 +169,7 @@ export const Home = () => {
     const event: string | undefined = eventMap[String(date)];
     if (event) {
       setDateLookup(formattedDate)
-      setDrinkLookup(event)
+      // setDrinkLookup(event)
       getFullDrinkInfo(event)
     }
   };

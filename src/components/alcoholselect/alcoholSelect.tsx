@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import slugify from 'react-slugify';
 import { Link } from 'react-router-dom';
 import './alcoholselect.css';
@@ -32,9 +32,9 @@ export const AlcoholSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
     const [filteredDrink, setFilteredDrink] = useState<Drink[]>([])
     const [displayName, setDisplayName] = useState<string>("")
 
-    const { data: cocktailsByBase, isLoading, isError, error } = CocktailsByBaseDrinkApi(String(alcohol) || "");
+    const { data: cocktailsByBase, isLoading, isError } = CocktailsByBaseDrinkApi(String(alcohol) || "");
 
-    const { data: cocktailBase, isLoading: cocktailBaseLoading, isError: cocktailBaseIsError, error: cocktailBaseError } = CocktailAlcoholType();
+    const { data: cocktailBase, isLoading: cocktailBaseLoading, isError: cocktailBaseIsError } = CocktailAlcoholType();
 
     const filterCocktailsByBase = async () => {
         if (cocktailsByBase) {

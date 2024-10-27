@@ -14,7 +14,7 @@ export const Discover = () => {
     const [discElementVisible, setDiscElementVisible] = useState<boolean>(false);
     const [mainAlcohols, setMainAlcohols] = useState([])
 
-    const { data: cocktailBase, isLoading, isError, error } = CocktailAlcoholType();
+    const { data: cocktailBase, isLoading, isError } = CocktailAlcoholType();
 
 
     useEffect(() => {

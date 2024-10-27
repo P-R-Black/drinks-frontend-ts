@@ -13,8 +13,8 @@ import { ContactUsPage } from '../pages/contactUsPages/ContactUsPage';
 import { TermsConditionsPage } from '../pages/termsConditionsPages/TermsConditionsPage';
 import { PrivacyPolicyPage } from '../pages/privacyPolicyPages/PrivacyPolicyPage';
 import { ErrorPagePage } from '../pages/errorPagePages/ErrorPagePage';
+import { BuildDrinkPage } from '../pages/buildDrinkPages/BuildDrinkPage';
 
-// import { BuildDrinkPage } from '../pages/buildDrinkPage/BuildDrinkPage';
 // import { SuperUserPage } from '../pages/superUserPage/SuperUserPage';
 // import { DashboardPage } from '../pages/dashboardPage/DashboardPage';
 
@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
             { path: "/:alcohol/shot", element: <ShotSelectPages /> },
             { path: "/:alcohol/all_shots", element: <ShotSelectPagesTwo /> },
             { path: "/:alcohol/:drinkName", element: <DrinkRecipePage /> },
-            // { path: "/build-drink", element: <BuildDrinkPage /> },
+            { path: "/build-drink", element: <BuildDrinkPage /> },
             { path: "/about-us", element: <AboutUsPage /> },
             { path: "/contact-us", element: <ContactUsPage /> },
             { path: "/terms-and-conditions", element: <TermsConditionsPage /> },
