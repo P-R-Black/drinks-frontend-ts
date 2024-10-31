@@ -67,20 +67,7 @@ export const Navigation = () => {
     // }, []);
 
 
-    // const fetchAlcoholType = async () => {
-    //     let filteredBase = []
-    //     for (let d = 0; d < drinks?.length; d++) {
-    //         let base = drinks?.map((ba) => ba.base_alcohol)
-    //         for (let b = 0; b < base.length; b++) {
-    //             let baseText = await base[b][0]
-    //             if (!filteredBase.includes(baseText)) {
-    //                 filteredBase.push(baseText)
 
-    //             }
-    //         }
-    //         return filteredBase.sort()
-    //     }
-    // }
 
 
     return (
@@ -98,7 +85,6 @@ export const Navigation = () => {
                             <button className="navBarMenu" id="navBarMenu" aria-controls="navBarMenu"
                                 aria-expanded="false"
                                 onClick={showNavMenu}
-                            // onClick={() => { showNavMenu(); fetchAlcoholType() }}
                             >
                                 <span className="bar kg-only"></span>
                                 <span className="bar kg-only"></span>
@@ -238,7 +224,6 @@ export const Navigation = () => {
                                 <button className="navBarMenu" id="navBarMenu" aria-controls="navBarMenu"
                                     aria-expanded="false"
                                     onClick={showNavMenu}
-                                // onClick={() => { showNavMenu(); fetchAlcoholType() }}
                                 >
                                     <span className="bar kg-only"></span>
                                     <span className="bar kg-only"></span>

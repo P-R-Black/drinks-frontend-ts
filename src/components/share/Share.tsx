@@ -14,6 +14,18 @@ import {
     WhatsappShareButton
 } from 'react-share';
 
+import { HeadProvider, Title, Meta } from 'react-head';
+import shareImage from '../../assets/og_img_one.png';
+import { useEffect } from 'react';
+
+
+declare global {
+    interface Window {
+        fbAsyncInit: () => void;
+        FB: any;
+    }
+}
+
 
 interface ShareProps {
     recipeInPlay: string;
@@ -29,8 +41,6 @@ interface ShareProps {
 
 export const Share: React.FC<ShareProps> = ({ recipeInPlay, ingredientInPlay, garnishInPlay, directionsInPlay, glassInPlay, shareUrl }) => {
 
-
-    const currentPageUrl = encodeURI(window.location.href)
     const fbAppId: string | undefined = process.env.REACT_APP_FB_APP_ID
 
     const showShareMenu = () => {
@@ -86,8 +96,72 @@ export const Share: React.FC<ShareProps> = ({ recipeInPlay, ingredientInPlay, ga
     };
 
 
+
+    const shareToFacebook = () => {
+        if (window.FB) {
+            window.FB.ui({
+                method: 'share',
+                href: shareUrl,
+                quote: `Try making this amazing ${recipeInPlay}!`,
+                hashtag: `#${titleCase(recipeInPlay)}`,
+                image: shareImage,
+                display: 'popup'
+            }, function (response: any) {
+                if (response) {
+                    console.log('Post was shared successfully', response)
+                } else {
+                    console.error('Error while sharing')
+                }
+            });
+        } else {
+            alert('Facebook SDK not loaded.')
+        }
+    }
+
+    useEffect(() => {
+        if (!fbAppId) return;
+
+        window.fbAsyncInit = function () {
+            window.FB.init({
+                appId: `${process.env.REACT_APP_FB_APP_ID}`,
+                cookie: true,
+                xfbml: true,
+                version: 'v12.0',
+            });
+
+            window.FB.AppEvents.logPageView();
+
+        };
+
+        (function (d, s, id) {
+            const element = d.getElementById(id)
+            if (element) return;
+
+            const js = d.createElement(s) as HTMLScriptElement;
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0' //'https://connect.facebook.net/en_US/sdk.js'
+            const fjs = d.getElementsByTagName(s)[0]
+            fjs.parentNode?.insertBefore(js, fjs)
+        }(document, 'script', 'facebook-jssdk'));
+
+    }, [fbAppId])
+
+
+
     return (
         <div className='shareIcon' aria-controls="shareMenu" aria-expanded="false" onClick={showShareMenu}>
+            <HeadProvider>
+                <Title>{recipeInPlay.length > 0 ? recipeInPlay : 'Drink Recipe'}</Title>
+                <Meta property="og:title" content={recipeInPlay} />
+                <Meta property="og:description" content={`Try making this amazing ${recipeInPlay}.`} />
+                <Meta property="og:image" content={shareImage} />
+                <Meta property="og:url" content={shareUrl} />
+                <Meta property="og:type" content="website" />
+                <Meta property="twitter:card" content="summary_large_image" />
+                <Meta property="twitter:image" content={shareImage} />
+
+            </HeadProvider>
+
             <div className="shareIconShareText">
                 <BiShareAlt className='iconHeart' />
                 <span>Share</span>
@@ -95,12 +169,19 @@ export const Share: React.FC<ShareProps> = ({ recipeInPlay, ingredientInPlay, ga
 
 
             <div className="shareDropDown">
-                <FacebookShareButton
-                    url={currentPageUrl}
-                    hashtag={`#${titleCase(recipeInPlay)}`}
+
+                <button onClick={shareToFacebook}>
+                    <FaFacebookSquare className='shareIcons' id='facebookShare' />
+                </button>
+
+                <TwitterShareButton
+                    url={shareUrl} // Link to your recipe page
+                    title={`How to make a ${recipeInPlay}`} // Sets the title to be shared
+                    hashtags={[titleCase(recipeInPlay)]} // Hashtag for the recipe
                 >
-                    <FaFacebookSquare className='shareIcons' id="facebookShare" />
-                </FacebookShareButton>
+                    <FaSquareXTwitter className="shareIcons" id="xShare" />
+                </TwitterShareButton>
+
 
                 {/* <FacebookMessengerShareButton
                     url={currentPageUrl}
@@ -108,15 +189,6 @@ export const Share: React.FC<ShareProps> = ({ recipeInPlay, ingredientInPlay, ga
                     redirectUri={shareUrl}>
                     <FaFacebookMessenger className='shareIcons' id="messengerShare" />
                 </FacebookMessengerShareButton> */}
-
-                {/* <TwitterShareButton
-                    url={`\n${currentPageUrl}`}
-                    quote="drink recipes"
-                    hashtag={`#${titleCase(recipeInPlay)}`}
-                    title={`How to make a ${recipeInPlay}`}
-                >
-                    <FaSquareXTwitter className='shareIcons' id="xShare" />
-                </TwitterShareButton> */}
 
                 <Link to="https://www.tumblr.com/widgets/share/tool" className="button" id="tumblr-quote"
                     title="post this recipe" target="_blank" rel="noopener noreferrer">

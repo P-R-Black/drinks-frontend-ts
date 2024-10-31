@@ -22,6 +22,8 @@
     justify-content: center;
     width: 100vw;
 
+
+
 }
 
 .pageLoading span {
@@ -57,3 +59,17 @@
     margin-right: 1rem;
 
 }
+
+/* =============== MEDIA QUERIES (MEDIUM DEVICES) =============== */
+@media screen and (max-width: 1024px) {}
+
+/* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
+@media screen and (max-width: 600px) {
+    .pageLoading {
+        margin-top: -8rem;
+    }
+}
+
+
+/* =============== MEDIA QUERIES (SMALL LANDSCAPE) =============== */
+@media (max-width: 670px) and (orientation: landscape) {}

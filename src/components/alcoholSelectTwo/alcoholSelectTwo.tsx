@@ -8,25 +8,8 @@ import { BackgroundPics } from '../../BackgroundPics';
 import { CocktailAlcoholType, CocktailsByBaseDrinkApi } from '../../api/DrinksAPI';
 import { ErrorPage } from '../errorPageComponents/errorPage/ErrorPage';
 import { LoadingPage } from '../loadingComponents/LoadingPage';
+import { Drink, AlcoholSelectProps } from '../../types';
 
-interface AlcoholSelectProps {
-    alcohol: string | undefined;
-}
-
-interface Drink {
-    id: number;
-    drink_name: string;
-    slug: string;
-    base_alcohol: string[];
-    drink_type: string;
-    garnish: string[];
-    ingredients: string[];
-    serving_glass: string;
-    mixing_direction: string;
-    profile: string;
-    must_know_drink: boolean;
-
-}
 
 export const AlcoholSelectTwo: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
 

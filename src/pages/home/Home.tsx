@@ -15,28 +15,7 @@ import { GetBackendApi, GetTodaysDrinkOfTheDay } from '../../api/GetSetDodApi';
 import { AllDrinksApi } from '../../api/DrinksAPI';
 import { LoadingPage } from '../../components/loadingComponents/LoadingPage';
 import { ErrorPage } from '../../components/errorPageComponents/errorPage/ErrorPage';
-
-
-
-interface Drink {
-  id: number;
-  drink_name: string;
-  slug: string;
-  base_alcohol: string[];
-  drink_type: string;
-  garnish: string[];
-  ingredients: string[];
-  serving_glass: string;
-  mixing_direction: string;
-  profile: string;
-  must_know_drink: boolean;
-
-}
-
-interface Event {
-  theDate: string;
-  name: string;
-}
+import { Drink, Event } from '../../types';
 
 
 

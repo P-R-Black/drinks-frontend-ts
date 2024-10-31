@@ -8,19 +8,16 @@ import slugify from 'react-slugify';
 // import { LoadingPage } from '../../loadingComponents/LoadingPage';
 // import { ErrorPage } from '../../errorPageComponents/errorPage/ErrorPage';
 import { AllDrinksApi } from '../../../api/DrinksAPI';
+import { SearchResultItem } from '../../../types';
 
 
-interface ResultItem {
-    base_alcohol: string[];
-    drink_name: string;
-}
 
 
 export const Search = () => {
 
     const [input, setInput] = useState("")
     const [selectedItem, setSelectedItem] = useState(-1)
-    const [results, setResults] = useState<ResultItem[]>([])
+    const [results, setResults] = useState<SearchResultItem[]>([])
     const navigate = useNavigate();
 
     const { data: AllDrinksApiData } = AllDrinksApi();

@@ -1,15 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import './calendar.css';
+import { CalendarProps } from '../../../types';
 
-interface CalendarProps {
-    date: Date;
-    year: number;
-    month: number;
-    handleDateClick: (date: string) => void;
-    pastDrinksOfTheDay: { theDate: string }[];
-    todaysDrinkOfTheDay: string;
-}
 
 export const Calendar: React.FC<CalendarProps> = ({ date, year, month, handleDateClick, pastDrinksOfTheDay }) => {
     const [calendarYear, setCalendarYear] = useState(year);

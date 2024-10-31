@@ -2,14 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import slugify from 'react-slugify';
 import './search.css';
+import { SearchResultsProps } from '../../../types';
 
-
-
-interface SearchResultsProps {
-    results: any;
-    selectedItem: any;
-    handleClose: Function;
-}
 
 
 

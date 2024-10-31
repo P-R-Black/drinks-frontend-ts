@@ -11,27 +11,8 @@ import slugify from 'react-slugify';
 import { CocktailsByBaseDrinkApi, ShotsByBaseDrinkApi } from '../../api/DrinksAPI';
 import { LoadingPage } from '../loadingComponents/LoadingPage'
 import { ErrorPage } from '../errorPageComponents/errorPage/ErrorPage'
+import { DrinkRecipeProp, Drink } from '../../types'
 
-
-interface DrinkRecipeProp {
-    drinkName: string | undefined;
-    alcohol: string | undefined
-}
-
-interface Drink {
-    id: number;
-    drink_name: string;
-    slug: string;
-    base_alcohol: string[];
-    drink_type: string;
-    garnish: string[];
-    ingredients: string[];
-    serving_glass: string;
-    mixing_direction: string;
-    profile: string;
-    must_know_drink: boolean;
-
-}
 
 export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) => {
     console.log('drinkName', drinkName, 'alcohol', alcohol)
@@ -60,8 +41,6 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
                     }
                 });
             }
-
-
         };
 
         const getShotRecipe = () => {
@@ -135,21 +114,16 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
         return newText
     }
 
-    if (isLoading) {
+    if (isLoading || shotsByBaseIsError) {
         return (<LoadingPage />);
     }
 
-    if (isError) {
+    if (isError || shotsByBaseIsLoading) {
         return (<ErrorPage />);
     }
 
-    if (shotsByBaseIsLoading) {
-        return (<LoadingPage />);
-    }
 
-    if (shotsByBaseIsError) {
-        return (<ErrorPage />);
-    }
+
 
     return (
         <section className="recipeBackground" style={{ backgroundImage: picChoice }}>

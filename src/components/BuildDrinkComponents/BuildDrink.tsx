@@ -7,16 +7,10 @@ import { AllDrinksApi } from '../../api/DrinksAPI';
 import './builddrink.css';
 import { LoadingPage } from '../loadingComponents/LoadingPage';
 import { ErrorPage } from '../errorPageComponents/errorPage/ErrorPage';
-
+import { ResultItem } from '../../types';
 let picBuldDrinkBGPic = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${buldDrinkBGPic})`;
 
 
-interface ResultItem {
-    ingredients: any;
-    id: number | null | undefined;
-    base_alcohol: string[];
-    drink_name: string;
-}
 
 export const BuildDrink = () => {
 

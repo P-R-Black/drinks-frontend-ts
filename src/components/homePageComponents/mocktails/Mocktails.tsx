@@ -8,22 +8,7 @@ import slugify from 'react-slugify';
 import { CocktailsByBaseDrinkApi } from '../../../api/DrinksAPI';
 import { ErrorPage } from '../../errorPageComponents/errorPage/ErrorPage';
 import { LoadingPage } from '../../loadingComponents/LoadingPage';
-
-
-interface Drink {
-    id: number;
-    drink_name: string;
-    slug: string;
-    base_alcohol: string[];
-    drink_type: string;
-    garnish: string[];
-    ingredients: string[];
-    serving_glass: string;
-    mixing_direction: string;
-    profile: string;
-    must_know_drink: boolean;
-
-}
+import { Drink } from '../../../types';
 
 
 export const Mocktails = () => {

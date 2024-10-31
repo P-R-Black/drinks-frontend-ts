@@ -5,29 +5,12 @@ import { BackgroundPics } from '../../BackgroundPics';
 import slugify from 'react-slugify';
 import './shotSelectTwo.css';
 import { ShotsAlcoholType, ShotsByBaseDrinkApi } from '../../api/DrinksAPI';
+import { AlcoholSelectProps, Drink } from '../../types';
 
 
-interface ShotSelectProps {
-    alcohol: string | undefined;
-}
-
-interface Drink {
-    id: number;
-    drink_name: string;
-    slug: string;
-    base_alcohol: string[];
-    drink_type: string;
-    garnish: string[];
-    ingredients: string[];
-    serving_glass: string;
-    mixing_direction: string;
-    profile: string;
-    must_know_drink: boolean;
-
-}
 
 
-export const ShotsSelectTwo: React.FC<ShotSelectProps> = ({ alcohol }) => {
+export const ShotsSelectTwo: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
     const [allShots, setallShots] = useState<Drink[]>([])
     const [displayName, setDisplayName] = useState<string>("")
 

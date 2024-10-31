@@ -234,6 +234,10 @@ ol.mockIngredientContainer li {
 
     /* To prevent gap during scroll with parallex */
 
+    .mocktailContainer {
+        margin-bottom: -3rem;
+    }
+
 
     .mocktailTitleContainer {
         margin-bottom: 3rem;

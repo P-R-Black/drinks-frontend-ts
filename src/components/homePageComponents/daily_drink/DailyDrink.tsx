@@ -7,37 +7,8 @@ import slugify from 'react-slugify'
 
 import { Parallax } from 'react-parallax';
 import dodImage from '../../../assets/pexels-ron-lach.jpg'
+import { DailyDrinkProps } from '../../../types'
 
-
-
-interface Drink {
-    id: number;
-    drink_name: string;
-    slug: string;
-    base_alcohol: string[];
-    drink_type: string;
-    garnish: string[];
-    ingredients: string[];
-    serving_glass: string;
-    mixing_direction: string;
-    profile: string;
-    must_know_drink: boolean;
-
-}
-
-interface DailyDrinkProps {
-    date: Date;
-    year: number;
-    month: number;
-    dd: string;
-    mm: string;
-    todaysDrinkOfTheDay: any;
-    currentDrink: Drink[];
-    dateLookup: string | undefined;
-    months: string[];
-    handleDateClick: (date: string) => void;
-    pastDrinksOfTheDay: any;
-}
 
 export const DailyDrink: React.FC<DailyDrinkProps> = (
     { date, year, month, dd, mm, todaysDrinkOfTheDay, currentDrink, handleDateClick,
@@ -47,7 +18,6 @@ export const DailyDrink: React.FC<DailyDrinkProps> = (
     const [dodElementVisible, setDodElementVisible] = useState<boolean>(false);
     let today = `${months[Number(mm) - 1]} ${dd.replace(/^0+/, "")}, ${year}`
 
-    // const debouncedHandleDateClick = useCallback(debounce(handleDateClick, 200), [handleDateClick]);
 
     useEffect(() => {
         const currentRef = titleRefTwo.current; // Store the ref value when the effect runs

@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import './tooltip.css'
+import { ToolTipProps } from '../../types';
 
-interface ToolTipProps {
-    text: string;
-    children: any;
-}
 
 export const ToolTip: React.FC<ToolTipProps> = ({ text, children }) => {
     const [isVisible, setisVisible] = useState(false)
