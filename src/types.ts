@@ -1,4 +1,5 @@
 export interface Drink {
+    results: any[];
     id: number;
     drink_name: string;
     slug: string;

@@ -58,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/gtag.js": "^0.0.20",
     "@types/lodash.debounce": "^4.0.9",
     "@types/react-router-hash-link": "^2.4.9"

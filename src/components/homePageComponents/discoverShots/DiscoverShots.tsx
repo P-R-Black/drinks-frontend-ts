@@ -42,8 +42,9 @@ export const DiscoverShots = () => {
 
     useEffect(() => {
         const allAlcohol = async () => {
+
             if (shotBase) {
-                let alcBase = await shotBase.map((cb: any) => cb.name)
+                let alcBase = await shotBase['results'].map((cb: any) => cb.name)
                 setShotByBase(alcBase); // Set the resolved data
             }
 
@@ -52,7 +53,7 @@ export const DiscoverShots = () => {
         allAlcohol(); // Call the async function
     }, [shotBase]); // Empty dependency array to run only once on mount'
 
-    if (shotBaseIsLoading) {
+    if (shotBaseIsLoading || !shotBase) {
         return (<LoadingPage />);
     }
 

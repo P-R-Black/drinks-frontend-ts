@@ -21,7 +21,7 @@ export const ShotSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
 
     const filterShotsByBase = async () => {
         if (shotsByBase) {
-            let getAllCocktails = await shotsByBase.drinks
+            let getAllCocktails = await shotsByBase.drinks.results
             setFilteredShot(getAllCocktails)
         }
 
@@ -29,8 +29,9 @@ export const ShotSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
 
     const getDisplayName = (alcohol: string | undefined) => {
         if (shotBase) {
-            const foundItem = shotBase.find((item: { slug: string; }) => item.slug === alcohol);
-            setDisplayName(foundItem ? foundItem.name : "")
+            const dataResults = shotBase
+            const foundItem = dataResults.results.find((item: { slug: string; }) => item.slug === alcohol)
+            setDisplayName(foundItem ? foundItem.name : null)
         }
     };
 
@@ -91,7 +92,7 @@ export const ShotSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
                     </div>
                     <div className="shotListContainer">
                         <ul className="shotListUl" style={{ animationDuration: `${(filteredShot.length * 100) / 20}s` }}>
-                            {filteredShot.map((fd, idx) => {
+                            {filteredShot && filteredShot.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((fd, idx) => {
                                 return (
                                     <React.Fragment key={idx}>
                                         <li className="shotListLi">{fd.drink_name}
@@ -100,7 +101,7 @@ export const ShotSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
                                     </React.Fragment>
                                 )
                             })}
-                            {filteredShot.map((fd, idx) => {
+                            {filteredShot && filteredShot.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((fd, idx) => {
                                 return (
                                     <React.Fragment key={idx}>
                                         <li className="shotListLi">{fd.drink_name}

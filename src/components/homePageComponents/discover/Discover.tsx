@@ -12,10 +12,9 @@ export const Discover = () => {
 
     const discoverRef = useRef<HTMLDivElement | any>(null);
     const [discElementVisible, setDiscElementVisible] = useState<boolean>(false);
-    const [mainAlcohols, setMainAlcohols] = useState([])
+    const [mainAlcohols, setMainAlcohols] = useState<string[]>([])
 
     const { data: cocktailBase, isLoading, isError } = CocktailAlcoholType();
-
 
     useEffect(() => {
         const currentRef = discoverRef.current; // Store the ref value when the effect runs
@@ -41,15 +40,19 @@ export const Discover = () => {
 
     useEffect(() => {
         const allAlcohol = async () => {
+
             if (cocktailBase) {
-                let alcBase = await cocktailBase.map((cb: any) => cb.name)
+                let alcBase = await cocktailBase['results'].map((cb: any) => cb.name)
                 setMainAlcohols(alcBase); // Set the resolved data
+            } else {
+                console.log("cocktailBase is not loaded or is empty")
             }
 
         };
 
         allAlcohol(); // Call the async function
     }, [cocktailBase]); // Empty dependency array to run only once on mount'
+
 
     if (isLoading) {
         return (<LoadingPage />);
@@ -58,7 +61,6 @@ export const Discover = () => {
     if (isError) {
         return (<ErrorPage />);
     }
-
 
 
     return (
@@ -75,7 +77,7 @@ export const Discover = () => {
                             <h2 className={discElementVisible ? `discoverTitleContainerH2 show` : `discoverTitleContainerH2 hidden`}>Your Next Cocktail</h2>
                         </div>
                         <div className="discLinksToDrinkContainer">
-                            {mainAlcohols.map((ad) => (
+                            {mainAlcohols && mainAlcohols.sort((a, b) => a > b ? 1 : -1).map((ad) => (
                                 <React.Fragment key={`/${slugify(ad)}`}>
                                     <div key={slugify(ad)} className={discElementVisible ? `discAlcLinkContainer show` : `discAlcLinkContainer hidden`}>
                                         <ToolTip text={ad}>

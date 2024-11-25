@@ -22,15 +22,18 @@ export const AlcoholSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
 
     const filterCocktailsByBase = async () => {
         if (cocktailsByBase) {
-            let getAllCocktails = await cocktailsByBase.drinks
+            let getAllCocktails = await cocktailsByBase.drinks.results
             setFilteredDrink(getAllCocktails)
         }
 
     }
 
     const getDisplayName = (alcohol: string | undefined) => {
-        const foundItem = cocktailBase.find((item: { slug: string; }) => item.slug === alcohol);
-        setDisplayName(foundItem ? foundItem.name : null)
+        if (cocktailBase) {
+            const dataResults = cocktailBase
+            const foundItem = dataResults.results.find((item: { slug: string; }) => item.slug === alcohol)
+            setDisplayName(foundItem ? foundItem.name : null)
+        }
     };
 
     useEffect(() => {
@@ -53,9 +56,6 @@ export const AlcoholSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
     if (cocktailBaseIsError) {
         return (<ErrorPage />);
     }
-
-
-
 
 
     // const scrollers = document.querySelectorAll('.drinkListContainer')
@@ -91,7 +91,7 @@ export const AlcoholSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
                     </div>
                     <div className="drinkListContainer" role="region" aria-labelledby="baseAlcoholName">
                         <ul className="drinkListUl" style={{ animationDuration: `${(filteredDrink.length * 100) / 20}s` }}>
-                            {filteredDrink.map((fd, fdIdx) => {
+                            {filteredDrink && filteredDrink.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((fd, fdIdx) => {
                                 return (
                                     <li className="drinkListLi" key={fdIdx} >{fd.drink_name}
                                         <Link
@@ -103,7 +103,7 @@ export const AlcoholSelect: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
 
                                 )
                             })}
-                            {filteredDrink.map((fd, fdIdx) => {
+                            {filteredDrink && filteredDrink.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((fd, fdIdx) => {
                                 return (
                                     <li className="drinkListLi" key={fdIdx} >{fd.drink_name}
                                         <Link

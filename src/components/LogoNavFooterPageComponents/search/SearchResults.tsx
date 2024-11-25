@@ -32,11 +32,11 @@ export const SearchResults: React.FC<SearchResultsProps> = ({ results, selectedI
 
     return (
         <>
-            <div className="resutls_list">
+            {/* <div className="resutls_list">
                 <ul className="searchResultContainer">
 
                 </ul>
-            </div>
+            </div> */}
 
             <div className="results_list" ref={listRef}>
                 <ul className="searchResultContainer">

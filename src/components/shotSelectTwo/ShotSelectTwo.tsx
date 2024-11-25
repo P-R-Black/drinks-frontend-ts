@@ -19,19 +19,18 @@ export const ShotsSelectTwo: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
 
     const filterShotsByBase = async () => {
         if (shotsByBase) {
-            let getAllCocktails = await shotsByBase.drinks
+            let getAllCocktails = await shotsByBase.drinks.results;
             setallShots(getAllCocktails)
         }
-
     }
 
 
     const getDisplayName = (alcohol: string | undefined) => {
         if (shotBase) {
-            const foundItem = shotBase.find((item: { slug: string; }) => item.slug === alcohol);
+            const dataResults = shotBase
+            const foundItem = dataResults.results.find((item: { slug: string; }) => item.slug === alcohol)
             setDisplayName(foundItem ? foundItem.name : null)
         }
-
     };
 
     useEffect(() => {
@@ -85,7 +84,7 @@ export const ShotsSelectTwo: React.FC<AlcoholSelectProps> = ({ alcohol }) => {
                         <h2>Shots</h2>
                     </div>
                     <div className="linksToShotContainer">
-                        {allShots.map((ad, adIdx) => (
+                        {allShots && allShots.sort((a, b) => a.drink_name > b.drink_name ? 1 : -1).map((ad, adIdx) => (
                             <React.Fragment key={adIdx}>
                                 {(window.innerWidth > 600) ? (window.innerWidth > 1080) ? (
                                     <>

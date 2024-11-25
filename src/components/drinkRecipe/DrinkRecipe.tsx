@@ -15,7 +15,6 @@ import { DrinkRecipeProp, Drink } from '../../types'
 
 
 export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) => {
-    console.log('drinkName', drinkName, 'alcohol', alcohol)
 
     const [recipe, setRecipe] = useState<Drink[]>([])
     const [toMl, setToMl] = useState<string[][]>([])
@@ -27,12 +26,10 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
     const { data: shotsByBase, isLoading: shotsByBaseIsLoading, isError: shotsByBaseIsError } = ShotsByBaseDrinkApi(String(alcohol) || "");
 
 
-
     useEffect(() => {
         const getDrinkRecipe = () => {
             if (cocktailsByBase) {
-                console.log('cocktailsByBase', cocktailsByBase)
-                cocktailsByBase.drinks.forEach((rec: Drink) => {
+                cocktailsByBase.drinks.results.forEach((rec: Drink) => {
                     if (
                         rec.drink_name.toLowerCase() === drinkName ||
                         slugify(rec.drink_name) === drinkName
@@ -46,7 +43,7 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
         const getShotRecipe = () => {
 
             if (shotsByBase) {
-                shotsByBase.drinks.forEach((rec: Drink) => {
+                shotsByBase.drinks.results.forEach((rec: Drink) => {
                     if (
                         rec.drink_name.toLowerCase() === drinkName ||
                         slugify(rec.drink_name) === drinkName
@@ -65,14 +62,13 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
             getShotRecipe()
         }
 
-
-
     }, [cocktailsByBase, drinkName, shotsByBase, alcohol]); // Dependency array
 
 
     let picChoice = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${imgRecipeBG})`;
-
     let shareUrl = window.location.href;
+
+    console.log('recipe', recipe)
 
 
 
@@ -182,7 +178,7 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
                                     )}
 
                                     <div className="measureContainer">
-                                        <div className="incrementUnit  unitMeasure">
+                                        <div className="incrementUnit unitMeasure">
                                             <div className={`${unitMeasure === "oz" ? "measureButtonContainer oz" : "measureButtonContainer ml"}`}>
                                                 <button
                                                     onClick={() => setUnitMeasure("oz")}

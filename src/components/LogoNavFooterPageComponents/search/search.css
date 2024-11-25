@@ -68,7 +68,7 @@ button.searchIcons {
 
 .searchResultList {
     align-items: center;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: rgba(0, 0, 0, 0.902);
     border: 2px solid rgb(0, 0, 0);
     color: var(--color-primary-font);
     cursor: pointer;

@@ -22,11 +22,9 @@ export const Mocktails = () => {
 
 
     const { data: cocktailsByBase, isLoading, isError } = CocktailsByBaseDrinkApi(String("non-alcoholic") || "");
-
-
     const filterCocktailsByBase = async () => {
         if (cocktailsByBase) {
-            let getAllCocktails = await cocktailsByBase.drinks
+            let getAllCocktails = await cocktailsByBase.drinks.results
             setMocktails(getAllCocktails)
         }
 
@@ -60,14 +58,13 @@ export const Mocktails = () => {
         filterCocktailsByBase()
     })
 
-    if (isLoading) {
+    if (isLoading || !cocktailsByBase) {
         return (<LoadingPage />);
     }
 
     if (isError) {
         return (<ErrorPage />);
     }
-
 
     // normal screen => medium screen => small screen
     return (
@@ -107,7 +104,7 @@ export const Mocktails = () => {
                             </>
                         </div>
                         <div className="MockLinksToDrinksContainerCard">
-                            {mocktails.map((mt) => (
+                            {mocktails.slice(0, 3).map((mt) => (
                                 <div
                                     ref={toolTipCardRef}
                                     className={toolTipCardVisible ? `toolTipCards show` : `toolTipCards hidden`}

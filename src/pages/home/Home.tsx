@@ -12,10 +12,17 @@ import { MustKnows } from '../../components/homePageComponents/mustKnows/MustKno
 import { CoockieBar } from '../../components/CookiesComponents/cookies/CookieBar';
 import { useCookies } from '../../providers/CookiesProvider';
 import { GetBackendApi, GetTodaysDrinkOfTheDay } from '../../api/GetSetDodApi';
-import { AllDrinksApi } from '../../api/DrinksAPI';
+// import { AllDrinksApi } from '../../api/DrinksAPI';
 import { LoadingPage } from '../../components/loadingComponents/LoadingPage';
 import { ErrorPage } from '../../components/errorPageComponents/errorPage/ErrorPage';
 import { Drink, Event } from '../../types';
+import { DrinksAPI } from '../../api/DrinksAPI';
+
+
+
+type DrinksParams = {
+  drinks: [string, Record<string, string>];
+};
 
 
 
@@ -25,8 +32,12 @@ export const Home = () => {
 
   const { data: backendApiData, isLoading: backendApiDataIsLoading, isError: backendApiDataIsError, error: backendApiDataError } = GetBackendApi();
   const { data: drinkOfTheDayData, isLoading: drinkOfTheDayDataIsLoading, isError: drinkOfTheDayDataIsError } = GetTodaysDrinkOfTheDay();
-  const { data: AllDrinksApiData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = AllDrinksApi();
+  // const { data: AllDrinksApiData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = AllDrinksApi();
 
+
+  const { initialData, fullData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = DrinksAPI();
+  console.log('Home: initialData', initialData)
+  console.log('Home: fullData', fullData)
 
 
   var date = new Date()
@@ -52,8 +63,9 @@ export const Home = () => {
   ];
 
   const updateDrinks = () => {
-    if (AllDrinksApiData) {
-      const assignDrinks = AllDrinksApiData.drinks
+    if (fullData) {
+      console.log('fullData inside UpdateDrinks', fullData)
+      const assignDrinks = fullData
       setDrinks(assignDrinks)
     }
 
@@ -108,9 +120,9 @@ export const Home = () => {
     fetchLastRecord()
   }, [drinks, drinkOfTheDay, backendApiData, backendApiDataError?.message, drinkOfTheDayData, getFullDrinkInfo]);
 
-  if (AllDrinksApiIsLoading) {
-    return (<LoadingPage />);
-  }
+  // if (AllDrinksApiIsLoading) {
+  //   return (<LoadingPage />);
+  // }
 
   if (AllDrinksApiIsError) {
     return (<ErrorPage />);
@@ -175,6 +187,7 @@ export const Home = () => {
     <>
       <Hero />
       <MidSection />
+
       <DailyDrink
         date={date}
         year={year}
