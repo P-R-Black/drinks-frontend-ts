@@ -5,9 +5,8 @@ import { IoMdSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io"
 import { useNavigate } from 'react-router-dom';
 import slugify from 'react-slugify';
-// import { LoadingPage } from '../../loadingComponents/LoadingPage';
-// import { ErrorPage } from '../../errorPageComponents/errorPage/ErrorPage';
-import { AllDrinksApi } from '../../../api/DrinksAPI';
+import { ErrorPage } from '../../errorPageComponents/errorPage/ErrorPage';
+import { DrinksAPI } from '../../../api/DrinksAPI';
 import { SearchResultItem } from '../../../types';
 
 
@@ -20,9 +19,7 @@ export const Search = () => {
     const [results, setResults] = useState<SearchResultItem[]>([])
     const navigate = useNavigate();
 
-    const { data: AllDrinksApiData } = AllDrinksApi();
-
-
+    const { initialData, fullData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = DrinksAPI();
 
     const handleKeyDown = (e: { key: string; preventDefault: () => void; }) => {
 
@@ -51,44 +48,57 @@ export const Search = () => {
 
     }
 
+    // Dont think I'll need this after updating placeholder to update based on initialData loading,
+    // ... and update useEffect to use initalData if fullData is not loaded
     const DrinksStillLoading = () => {
         return (
             <div>{"Drinks are loading"}</div>
-        )
+        );
+
     }
 
 
+
     useEffect(() => {
-        if (input !== "" && !AllDrinksApiData) {
-            <DrinksStillLoading />
-        }
-        if (input !== "") {
-            const searchResults = AllDrinksApiData.drinks.filter((drink: { base_alcohol: string[]; drink_name: string; ingredients: string[]; }) => {
+        if (input !== "" && !fullData) {
+            const searchResults = initialData?.filter((drink: { base_alcohol: string[]; drink_name: string; ingredients: string[]; }) => {
                 return (
                     drink.base_alcohol[0].toLowerCase().includes(input.toLowerCase()) ||
                     drink.drink_name.toLowerCase().includes(input.toLowerCase()) ||
                     drink.ingredients.join(" ").toLowerCase().includes(input.toLowerCase())
                 );
             })
-            setResults(searchResults.sort())
+            if (searchResults) {
+                setResults(searchResults.sort())
+            }
+        }
+        if (input !== "") {
+            const searchResults = fullData?.filter((drink: { base_alcohol: string[]; drink_name: string; ingredients: string[]; }) => {
+                return (
+                    drink.base_alcohol[0].toLowerCase().includes(input.toLowerCase()) ||
+                    drink.drink_name.toLowerCase().includes(input.toLowerCase()) ||
+                    drink.ingredients.join(" ").toLowerCase().includes(input.toLowerCase())
+                );
+            })
+            if (searchResults) {
+                setResults(searchResults.sort())
+            }
+
         } else {
             setResults([])
         }
 
-    }, [input, AllDrinksApiData])
+    }, [input, fullData, initialData])
 
     const handleChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setInput(e.target.value)
     }
 
-    // if (AllDrinksApiIsLoading) {
-    //     return (<LoadingPage />);
-    // }
 
-    // if (AllDrinksApiIsError) {
-    //     return (<ErrorPage />);
-    // }
 
+    if (AllDrinksApiIsError) {
+        return (<ErrorPage />);
+    }
 
 
     return (
@@ -100,7 +110,7 @@ export const Search = () => {
                         id="search"
                         className="searchBar"
                         type="text"
-                        placeholder="Search Drink by Name, Alcohol, or Ingredient"
+                        placeholder={!initialData ? "Loading All Drinks" : "Search Drink by Name, Alcohol, or Ingredient"}
                         value={input}
                         onChange={handleChange}
                         onKeyDown={handleKeyDown}

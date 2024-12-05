@@ -20,24 +20,15 @@ import { DrinksAPI } from '../../api/DrinksAPI';
 
 
 
-type DrinksParams = {
-  drinks: [string, Record<string, string>];
-};
-
-
-
 export const Home = () => {
 
   const { cookiesConsent, acceptCookies, declineCookies, showCookieBanner, } = useCookies();
 
   const { data: backendApiData, isLoading: backendApiDataIsLoading, isError: backendApiDataIsError, error: backendApiDataError } = GetBackendApi();
   const { data: drinkOfTheDayData, isLoading: drinkOfTheDayDataIsLoading, isError: drinkOfTheDayDataIsError } = GetTodaysDrinkOfTheDay();
-  // const { data: AllDrinksApiData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = AllDrinksApi();
 
 
   const { initialData, fullData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = DrinksAPI();
-  console.log('Home: initialData', initialData)
-  console.log('Home: fullData', fullData)
 
 
   var date = new Date()
@@ -63,9 +54,13 @@ export const Home = () => {
   ];
 
   const updateDrinks = () => {
-    if (fullData) {
-      console.log('fullData inside UpdateDrinks', fullData)
-      const assignDrinks = fullData
+    let assignDrinks: any;
+    if (!fullData && initialData) {
+      assignDrinks = initialData
+      setDrinks(assignDrinks)
+
+    } else if (fullData) {
+      assignDrinks = initialData
       setDrinks(assignDrinks)
     }
 
@@ -120,9 +115,6 @@ export const Home = () => {
     fetchLastRecord()
   }, [drinks, drinkOfTheDay, backendApiData, backendApiDataError?.message, drinkOfTheDayData, getFullDrinkInfo]);
 
-  // if (AllDrinksApiIsLoading) {
-  //   return (<LoadingPage />);
-  // }
 
   if (AllDrinksApiIsError) {
     return (<ErrorPage />);
@@ -160,7 +152,6 @@ export const Home = () => {
     const event: string | undefined = eventMap[String(date)];
     if (event) {
       setDateLookup(formattedDate)
-      // setDrinkLookup(event)
       getFullDrinkInfo(event)
     }
   };
@@ -187,7 +178,6 @@ export const Home = () => {
     <>
       <Hero />
       <MidSection />
-
       <DailyDrink
         date={date}
         year={year}

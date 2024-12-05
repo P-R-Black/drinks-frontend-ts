@@ -49,7 +49,6 @@ export const FetchAlcoholTypes = async () => {
 
 
 const AxiosFetch = async (endpoint: string) => {
-    console.log('AxiosFetch hit')
     const response = await axios.get('https://drinksapi.paulrblack.com/api/v1/' + endpoint, {
         headers: {
             'Authorization': `Api-Key ${drinksAPIKeyDev}`,
@@ -72,7 +71,6 @@ export const AllAlcoholType = () => {
 }
 
 export const CocktailAlcoholType = () => {
-    console.log('CocktailAlcoholType called')
     return useQuery({
         queryKey: ['cocktailAlcoholTypes'], // Unique query key
         queryFn: async () => AxiosFetch('cocktail-alcohol-types'),
@@ -93,7 +91,6 @@ export const ShotsAlcoholType = () => {
 }
 
 export const CocktailsByBaseDrinkApi = (alcoholBase: string) => {
-    console.log('alcoholBase called', alcoholBase)
     return useQuery({
         queryKey: ['cocktailByBase', alcoholBase], // Unique query key
         queryFn: async () => AxiosFetch('cocktail/' + alcoholBase),
@@ -154,7 +151,6 @@ export const FetchPaginatedData = async ({ queryKey, maxItems = Infinity }: Fetc
     while (nextUrl && apiData.length < maxItems) {
         try {
             const response = await axios.get(nextUrl, { headers });
-            console.log('response', response)
             apiData = [...apiData, ...response.data.results];
             nextUrl = response.data.next;
 
@@ -221,4 +217,3 @@ export const DrinksAPI = () => {
     };
 
 }
-
