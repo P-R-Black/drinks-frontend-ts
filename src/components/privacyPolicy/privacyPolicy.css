@@ -179,7 +179,7 @@ ol.privacyBulletListInner li {
 /* =============== MEDIA QUERIES (SMALL DEVICES) =============== */
 @media screen and (max-width: 600px) {
     .privacyPolicySection {
-        margin-top: -9rem;
+        margin-top: -11rem;
 
     }
 

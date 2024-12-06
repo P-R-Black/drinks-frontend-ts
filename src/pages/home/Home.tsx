@@ -28,7 +28,7 @@ export const Home = () => {
   const { data: drinkOfTheDayData, isLoading: drinkOfTheDayDataIsLoading, isError: drinkOfTheDayDataIsError } = GetTodaysDrinkOfTheDay();
 
 
-  const { initialData, fullData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = DrinksAPI();
+  const { initialData, fullData, isError: AllDrinksApiIsError } = DrinksAPI();
 
 
   var date = new Date()
@@ -60,8 +60,9 @@ export const Home = () => {
       setDrinks(assignDrinks)
 
     } else if (fullData) {
-      assignDrinks = initialData
+      assignDrinks = fullData
       setDrinks(assignDrinks)
+
     }
 
   }

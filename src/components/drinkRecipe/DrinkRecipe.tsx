@@ -114,7 +114,7 @@ export const DrinkRecipe: React.FC<DrinkRecipeProp> = ({ drinkName, alcohol }) =
         return (<LoadingPage />);
     }
 
-    if (isError || shotsByBaseIsLoading) {
+    if (isError) {
         return (<ErrorPage />);
     }
 
