@@ -1,11 +1,10 @@
 .allDrinksBackground {
-    background-size: cover;
     background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.181);
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     overflow-x: hidden;
-
-
     height: 100vh;
     margin-top: -5rem;
     width: 100%;

@@ -3,11 +3,12 @@ import { ToolTipTwo } from '../tooltip/ToolTip';
 import { Link } from 'react-router-dom';
 import slugify from 'react-slugify';
 import buldDrinkBGPic from '../../../src/assets/pexels-overhead.jpg'
-import { AllDrinksApi, DrinksAPI, } from '../../api/DrinksAPI';
 import './builddrink.css';
 import { LoadingPage } from '../loadingComponents/LoadingPage';
 import { ErrorPage } from '../errorPageComponents/errorPage/ErrorPage';
 import { ResultItem } from '../../types';
+import { DrinksAPI } from '../../api/DrinksAPI';
+import RotatingMixes from '../rotatingMixes/RotatingMixes';
 let picBuldDrinkBGPic = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${buldDrinkBGPic})`;
 
 
@@ -15,15 +16,15 @@ let picBuldDrinkBGPic = `radial-gradient(#2e2c7c68, #4a5ecb5f), url(${buldDrinkB
 export const BuildDrink = () => {
 
     const [selectedBaseAlcohols, setSelectedBaseAlcohols] = useState([""]);
-    const [selectedIngredients, setSelectedIngredients] = useState([""])
-    const [alcoholText, setAlcoholText] = useState('Rum');
-    const [ingredientText, setIngredientText] = useState('Cranberry Juice');
+    const [selectedIngredients, setSelectedIngredients] = useState([""]);
 
     const [allAlcohols, setAllAlcohols] = useState<string[]>([]);
     const [allIngredients, setAllIngredients] = useState<string[]>([]);
     const [allUniqueIngredients, setAllUniqueIngredients] = useState<string[]>([])
 
+
     const { initialData, fullData, isLoading: AllDrinksApiIsLoading, isError: AllDrinksApiIsError } = DrinksAPI();
+
 
     // clean ingredient names: turns "2.00 oz Orange Juice" to "Orange Juice"
     const extractMainIngredients = (ingredientsList: any[]) => {
@@ -34,70 +35,52 @@ export const BuildDrink = () => {
     };
 
 
-
-    const fishYatesShuffle = (arr: string[]) => {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-        return arr
-    }
-
-
-
-    useEffect(() => {
-        // randomly selects a base_alcohol and ingredient from API to populate h2
-        const interval = setInterval(() => {
-            if (allIngredients) {
-                const shuffledAlcohols = fishYatesShuffle(allAlcohols);
-                const shuffledIngredients = fishYatesShuffle(extractMainIngredients(allIngredients));
-                setAlcoholText(shuffledAlcohols[0] || '');
-                setIngredientText(shuffledIngredients[0] || '');
-            }
-
-
-        }, 5000);
-
-        return () => clearInterval(interval);
-
-    }, [alcoholText, allIngredients, allAlcohols])
-
-
-
-    const updateUniqueIngredients = () => {
-        if (allIngredients) {
-            const mainIngredients = extractMainIngredients(allIngredients);
-            const uniqueIngredients = [...new Set(mainIngredients.sort())]
-            setAllUniqueIngredients(uniqueIngredients)
-        }
-
-    }
-
-
     const extractUniqueItems = (data: any[], key: string) => {
         const allItems = data.flatMap((item) => item[key] || []);
         return [...new Set(allItems.map((item) => item.trim()))];
     };
 
+    // const updateUniqueIngredients = () => {
+    //     if (allIngredients) {
+    //         const mainIngredients = extractMainIngredients(allIngredients);
+    //         const uniqueIngredients = [...new Set(mainIngredients)]
+    //         setAllUniqueIngredients(uniqueIngredients)
+    //     }
+
+    // }
+
+    const updateUniqueIngredients = useMemo(() => {
+        if (allIngredients) {
+            return [...new Set(extractMainIngredients(allIngredients))]
+        }
+        return []
+    }, [allIngredients])
+
+
 
     useEffect(() => {
+
+
         const dataUpdate = async () => {
             if (initialData && !fullData) {
                 setAllAlcohols(extractUniqueItems(initialData, 'base_alcohol'));
                 setAllIngredients(extractUniqueItems(initialData, 'ingredients'));
-                setAllUniqueIngredients(extractUniqueItems(initialData, 'ingredients'))
             } else if (fullData) {
                 setAllAlcohols(extractUniqueItems(fullData, 'base_alcohol'));
                 setAllIngredients(extractUniqueItems(fullData, 'ingredients'));
             }
-
-
         }
 
-
-        updateUniqueIngredients()
         dataUpdate()
     }, [initialData, fullData]);
+
+    useEffect(() => {
+        if (updateUniqueIngredients) {
+            setAllUniqueIngredients(updateUniqueIngredients);
+        }
+
+    }, [updateUniqueIngredients])
+
 
 
     if (!initialData) {
@@ -108,66 +91,18 @@ export const BuildDrink = () => {
         return (<ErrorPage />);
     }
 
-    // Goes through drinks API and gets a list of all base_alcohol names
-    // const getAllAlcohols = () => {
-    //     if (!fullData && initialData) {
-    //         let alcohols = initialData.map((dr: { base_alcohol: string[]; }) => dr.base_alcohol)
-    //         let filteredAlcohol = alcohols.filter((alc) => alc)
-
-    //         for (let i = 0; i < filteredAlcohol.length; i++) {
-    //             for (let j = 0; j < filteredAlcohol[i].length; j++) {
-    //                 if (!all_alcohols_list.includes(filteredAlcohol[i][j].trim()))
-    //                     all_alcohols_list.push(filteredAlcohol[i][j])
-    //             }
-    //         }
-
-    //     } else if (fullData) {
-    //         let alcohols = fullData.map((dr: { base_alcohol: string[]; }) => dr.base_alcohol)
-    //         let filteredAlcohol = alcohols.filter((alc) => alc)
-
-    //         for (let i = 0; i < filteredAlcohol.length; i++) {
-    //             for (let j = 0; j < filteredAlcohol[i].length; j++) {
-    //                 if (!all_alcohols_list.includes(filteredAlcohol[i][j].trim()))
-    //                     all_alcohols_list.push(filteredAlcohol[i][j])
-    //             }
-    //         }
-    //     }
-    // };
-
-
-
-    // Goes through drinks API and gets a list of all ingredients listed
-    // const getAllIngredients = () => {
-    //     if (!fullData && initialData) {
-    //         let ingredients = initialData.map((dr: { ingredients: any; }) => dr.ingredients)
-    //         let filteredIngredients = ingredients.filter((ing) => ing)
-
-    //         for (let i = 0; i < filteredIngredients.length; i++) {
-    //             for (let j = 0; j < filteredIngredients[i].length; j++) {
-    //                 if (!all_ingredient_list.includes(filteredIngredients[i][j].trim()))
-    //                     all_ingredient_list.push(filteredIngredients[i][j])
-    //             }
-    //         }
-    //     } else if (fullData) {
-    //         let ingredients = fullData.map((dr: { ingredients: any; }) => dr.ingredients)
-    //         let filteredIngredients = ingredients.filter((ing) => ing)
-
-    //         for (let i = 0; i < filteredIngredients.length; i++) {
-    //             for (let j = 0; j < filteredIngredients[i].length; j++) {
-    //                 if (!all_ingredient_list.includes(filteredIngredients[i][j].trim()))
-    //                     all_ingredient_list.push(filteredIngredients[i][j])
-    //             }
-    //         }
-    //     }
-    // };
-
-    // getAllAlcohols()
-    // getAllIngredients()
-
-
-
-    // sorts all the base_alcohols pulled from api "drinks"
-    const uniqueAlcohols = [...new Set(allAlcohols.sort())]
+    const CallToPantry = () => {
+        return (
+            <div className="callToPantry">
+                <h2>{"Checking the Pantry for Ingredients"}</h2>
+                <div className="ingredientsLoading">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        )
+    }
 
 
 
@@ -278,24 +213,17 @@ export const BuildDrink = () => {
     return (
         <section className="buildDrinkSection" id="buildDrinkSection" style={{ backgroundImage: picBuldDrinkBGPic }}>
             <div className="container">
-                <div className="buildADrinkTitle">
-                    <h1>Build A Drink</h1>
-                    <h2>What Can You Make With
-                        <div className="innerMovingText">
-                            <span className="innerMovingAlcText" aria-live="polite">{alcoholText} </span>
-                            &amp;
-                            <span className="innerMovingIngText" aria-live="polite"> {ingredientText}</span>
-                        </div>
-                    </h2>
-                </div>
+                <RotatingMixes />
+
                 <fieldset id="allContainer">
                     <div className="selectionContainer">
                         <div className="alcSelectionContainer">
                             <div className="chooseAlcTitle">
                                 <h3>Select an Alcohol</h3>
                             </div>
+
                             <div className="alcSelection">
-                                {uniqueAlcohols.map((bal, balIdx) => (
+                                {allAlcohols && allAlcohols.sort((a, b) => a > b ? 1 : -1).map((bal, balIdx) => (
                                     <label htmlFor={bal} key={balIdx}>
                                         <input
                                             className="checkBoxField"
@@ -307,23 +235,28 @@ export const BuildDrink = () => {
                                     </label>
                                 ))}
                             </div>
+
                         </div>
                         <div className="ingSelectionContainer">
                             <div className="chooseIngTitle">
                                 <h3>Select an Ingredient</h3>
                             </div>
                             <div className="alcSelection">
-                                {allUniqueIngredients.map((bal, idx) => (
-                                    <label htmlFor={bal} key={idx}>
-                                        <input
-                                            className="checkBoxField"
-                                            type="checkbox"
-                                            id={bal}
-                                            onChange={() => handleIngredientboxChange(bal)}
-                                            aria-label={`Select ${bal}`} />
-                                        {bal}
-                                    </label>
-                                ))}
+                                {allUniqueIngredients.length === 0 ? <CallToPantry /> :
+                                    <>
+                                        {allUniqueIngredients && allUniqueIngredients.sort((a, b) => a > b ? 1 : -1).map((bal, idx) => (
+                                            <label htmlFor={bal} key={idx}>
+                                                <input
+                                                    className="checkBoxField"
+                                                    type="checkbox"
+                                                    id={bal}
+                                                    onChange={() => handleIngredientboxChange(bal)}
+                                                    aria-label={`Select ${bal}`} />
+                                                {bal}
+                                            </label>
+                                        ))}
+                                    </>
+                                }
                             </div>
                         </div>
                     </div>

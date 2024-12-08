@@ -11,33 +11,9 @@
 
 }
 
-.buildADrinkTitle {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 5rem;
-}
 
-.buildADrinkTitle h1 {
-    font-size: clamp(4rem, 11vw, 13vw);
-    margin-top: 1.5rem;
-    text-align: center;
-}
 
-.buildADrinkTitle h2 {
-    font-size: clamp(1rem, 2.5vw, 6vw);
-    display: flex;
-    flex-wrap: wrap;
-    height: 6rem;
-    justify-content: center;
-    padding-bottom: 5rem;
-    text-align: center;
-}
 
-.innerMovingText {
-    margin-left: .5rem;
-    text-transform: capitalize;
-}
 
 
 #allContainer {
@@ -142,6 +118,46 @@ li::marker {
 
 .drinkNameResults:hover {
     color: #ef4c3a;
+}
+
+
+.callToPantry {
+    display: flex;
+    min-width: 100%;
+}
+
+
+.callToPantry h2 {
+    color: white;
+    min-width: 100%;
+}
+
+.ingredientsLoading {
+    height: 3rem;
+}
+
+.ingredientsLoading span {
+    animation-name: dots;
+    animation-duration: 750ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    background-color: #ffd957;
+    border-radius: 50%;
+    display: inline-block;
+    height: 25px;
+    margin: 0 5px;
+    width: 25px;
+}
+
+.ingredientsLoading span:nth-child(2) {
+    background-color: #57ffa0;
+    animation-delay: 0.2s;
+
+}
+
+.ingredientsLoading span:nth-child(3) {
+    background-color: #ff8b57;
+    animation-delay: 0.4s
 }
 
 

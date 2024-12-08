@@ -1,0 +1,27 @@
+.buildADrinkTitle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5rem;
+}
+
+.buildADrinkTitle h1 {
+    font-size: clamp(4rem, 11vw, 13vw);
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.buildADrinkTitle h2 {
+    font-size: clamp(1rem, 2.5vw, 6vw);
+    display: flex;
+    flex-wrap: wrap;
+    height: 6rem;
+    justify-content: center;
+    padding-bottom: 5rem;
+    text-align: center;
+}
+
+.innerMovingText {
+    margin-left: .5rem;
+    text-transform: capitalize;
+}
