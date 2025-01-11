@@ -20,7 +20,7 @@ https://keepsguide.paulrblack.com
 
 ## Tech Stack
 
-**Client:** React, HTML, CSS
+**Client:** React, TypeScript, HTML, CSS
 
 **Server:** REST Framework, Node, Express
 
