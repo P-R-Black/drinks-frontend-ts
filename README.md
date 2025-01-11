@@ -1,46 +1,38 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Keep's Guide
 
-## Available Scripts
+A web application for cocktail recipes that provides professional and novice mixologists with the instructions needed to craft their cocktail or shot of choice.
 
-In the project directory, you can run:
 
-### `npm start`
+## Why (Motivation for Creating)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+There are many popular sites that provide cocktail recipes, but they tend to give several paragraphs of information about the drink before revealing the recipe.  While out, I've witnessed bartenders referring to these sites to get a drink recipe, and scrolling through useless information in order to get to the ingredients and recipe. 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Keep's Guide was created as a recipe guide for bartenders, aspiring bartenders and home mixologists who need the recipe without a backstory. Whether looking for a refresher on how to make an old favorite or trying to find a new favorite drink, Keep's Guide will give you the drink's recipe, mixing instructions and little else. 
+## Quick Start
 
-### `npm test`
+The web application can be accessed at:
+https://keepsguide.paulrblack.com
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+![Logo](https://res.cloudinary.com/prblack/image/upload/v1736630654/KGfavicon.01_sztrpt.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Tech Stack
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Client:** React, HTML, CSS
 
-### `npm run eject`
+**Server:** REST Framework, Node, Express
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+**Hosting:** Digital Ocean
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Other Common Github Profile Sections
+👩‍💻 I'm currently working on a React Native version of Keep's Guide
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+🧠 I'm currently learning React Native
 
-## Learn More
+📫 How to reach me pblackdevdemo@gmail.com
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+⚡️ Fun fact... Did you know that the Gimlet was promoted as a cure for scurvy? 
 
-To learn React, check out the [React documentation](https://reactjs.org/).

@@ -30,5 +30,5 @@ if (rootElement) {
 
   );
 } else {
-  console.error('Rood element not found');
+  console.error('Root element not found');
 }
